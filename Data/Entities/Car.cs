@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinMyCarTrip.Domain.Entities
+namespace JoinMyCarTrip.Data.Entities
 {
     public class Car
     {

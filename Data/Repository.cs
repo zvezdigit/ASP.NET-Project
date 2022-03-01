@@ -1,5 +1,5 @@
-﻿using JoinMyCarTrip.Domain.Entities;
-using JoinMyCarTrip.Domain.Interfaces;
+﻿using JoinMyCarTrip.Data.Interfaces;
+using JoinMyCarTrip.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

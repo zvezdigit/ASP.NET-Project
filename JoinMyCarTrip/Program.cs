@@ -1,5 +1,5 @@
 using JoinMyCarTrip.Application.DependencyInjection;
-// using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +13,6 @@ builder.Services.AddApplicationServices(config);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//     .AddEntityFrameworkStores<ApplicationDbContext>();   //should be uncommented
 
 builder.Services.AddControllersWithViews();
 

@@ -1,5 +1,4 @@
 ﻿using JoinMyCarTrip.Application.Models;
-using JoinMyCarTrip.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

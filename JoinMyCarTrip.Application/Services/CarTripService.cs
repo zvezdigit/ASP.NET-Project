@@ -1,7 +1,6 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Application.Models;
-using JoinMyCarTrip.Domain.Entities;
-using JoinMyCarTrip.Domain.Interfaces;
+using JoinMyCarTrip.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

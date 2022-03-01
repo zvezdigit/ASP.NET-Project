@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip", "JoinMyCarT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip.Data", "Data\JoinMyCarTrip.Data.csproj", "{C34EEF77-ABF6-4DAD-9973-A13CBB0C815D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinMyCarTrip.Domain", "JoinMyCarTrip.Core\JoinMyCarTrip.Domain.csproj", "{AFAB21C8-80B0-41B0-A51C-30B73A497A5B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinMyCarTrip.Application", "JoinMyCarTrip.Application\JoinMyCarTrip.Application.csproj", "{164E42B0-ABEB-470B-9AA1-7B0F4173B691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip.Application", "JoinMyCarTrip.Application\JoinMyCarTrip.Application.csproj", "{164E42B0-ABEB-470B-9AA1-7B0F4173B691}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{C34EEF77-ABF6-4DAD-9973-A13CBB0C815D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C34EEF77-ABF6-4DAD-9973-A13CBB0C815D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C34EEF77-ABF6-4DAD-9973-A13CBB0C815D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AFAB21C8-80B0-41B0-A51C-30B73A497A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFAB21C8-80B0-41B0-A51C-30B73A497A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFAB21C8-80B0-41B0-A51C-30B73A497A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFAB21C8-80B0-41B0-A51C-30B73A497A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{164E42B0-ABEB-470B-9AA1-7B0F4173B691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{164E42B0-ABEB-470B-9AA1-7B0F4173B691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164E42B0-ABEB-470B-9AA1-7B0F4173B691}.Release|Any CPU.ActiveCfg = Release|Any CPU

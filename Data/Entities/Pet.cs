@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinMyCarTrip.Domain.Entities
+namespace JoinMyCarTrip.Data.Entities
 {
-    public class TripType
+    public class Pet
     {
         [Key]
         [MaxLength(36)]
@@ -15,10 +15,10 @@ namespace JoinMyCarTrip.Domain.Entities
 
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; } //regular and non-regular
+        public string Type { get; set; }  //cat or dog or bird
 
         [Required]
-        [MaxLength(50)]
-        public string SubName { get; set; } //regular - daily; weekly; monthly
+        [MaxLength(100)]
+        public string Description { get; set; }
     }
 }
