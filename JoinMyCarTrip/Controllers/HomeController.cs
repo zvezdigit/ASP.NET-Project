@@ -1,4 +1,5 @@
-﻿using JoinMyCarTrip.Models;
+﻿using JoinMyCarTrip.Application.Constants;
+using JoinMyCarTrip.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,8 @@ namespace JoinMyCarTrip.Controllers
 
         public IActionResult Index()
         {
+            ViewData[MessageConstant.SuccessMessage] = "Welcome";
+
             return View();
         }
 
