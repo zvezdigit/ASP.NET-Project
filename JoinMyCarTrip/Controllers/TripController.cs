@@ -18,5 +18,10 @@ namespace JoinMyCarTrip.Controllers
 
             return View(trips);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
