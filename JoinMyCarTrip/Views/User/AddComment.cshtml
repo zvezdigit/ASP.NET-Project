@@ -1,0 +1,36 @@
+﻿<div class="card card-warning">
+    <div class="card-header">
+        <h3 class="card-title">Add your comment</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <form method="post" action="/User/AddComment" role="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter your comment..."></textarea>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label>Did you like the trip organizer?</label>
+                        
+                        <div class="icheck-success d-inline">
+                            <input type="radio" name="IsNiceOrganizer" id="radioSuccess3">
+                            <label for="radioSuccess3">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="icheck-danger d-inline">
+                            <input type="radio" name="IsNiceOrganizer" id="radioDanger3">
+                            <label for="radioDanger3">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

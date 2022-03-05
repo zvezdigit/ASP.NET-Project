@@ -28,8 +28,17 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
-        [Authorize]
         public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult AddPet()
+        {
+            return View();
+        }
+
+        public IActionResult AddComment()
         {
             return View();
         }

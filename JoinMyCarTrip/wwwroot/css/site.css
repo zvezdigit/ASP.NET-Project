@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+div.content-header {
+    padding-bottom: 0px;
+}

@@ -26,9 +26,6 @@ namespace JoinMyCarTrip.Data.Entities
         [MaxLength(60)]
         public string PhoneNumber { get; set; }
 
- 
-        [MaxLength(300)]
-        public string ImageUrl { get; set; }
 
         [Required]
         [MaxLength(340)]

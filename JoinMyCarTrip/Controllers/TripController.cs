@@ -23,5 +23,15 @@ namespace JoinMyCarTrip.Controllers
         {
             return View();
         }
+
+        public IActionResult AddCar()
+        {
+            return View();
+        }
+
+        public IActionResult All()
+        {
+            return View();
+        }
     }
 }

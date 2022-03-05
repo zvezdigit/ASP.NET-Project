@@ -19,17 +19,13 @@ namespace JoinMyCarTrip.Data.Entities
 
         [Required]
         [MaxLength(150)]
-        public string MiddlePoint { get; set; }
-
-        [Required]
-        [MaxLength(150)]
         public string EndPoint { get; set; }
 
         [Required]
         public DateTime DepartureTime { get; set; }
 
         [Required]
-        public TripType TripType { get; set; }
+        public string TripType { get; set; }
 
         [Required]
         public int Seats { get; set; }

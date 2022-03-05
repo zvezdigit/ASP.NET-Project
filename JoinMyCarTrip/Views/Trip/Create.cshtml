@@ -1,76 +1,62 @@
-﻿ <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Create Trip</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Project Add</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+﻿<!-- Main content -->
+<section class="content">
+    <form method="post" action="/Trip/Create">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h1>Create Trip</h1>
 
-    <!-- Main content -->
-    <section class="content">
-         <form method="post">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Trip</h3>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Trip</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputStartPoint">Start Point</label>
-                <input type="text" id="inputStartPoint" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputMiddlePoint">Middle Point</label>
-                <input type="text" id="inputMiddlePoint" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputEndPoint">End Point</label>
-                <input type="text" id="inputEndPoint" class="form-control">
-              </div>
-               <div class="form-group">
-                    <label for="departureTime">Departure Time</label>
-                    <input type="text" class="form-control" id="departureTime" name="departureTime" placeholder="dd.MM.yyyy HH:mm">
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputStartPoint">Start Point</label>
+                            <input type="text" name="StartPoint" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEndPoint">End Point</label>
+                            <input type="text" name="EndPoint" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="departureTime">Departure Time</label>
+                            <input type="text" class="form-control" id="departureTime" name="DepartureTime" placeholder="dd/MM/yyyy HH:mm">
+                        </div>
+                        <div class="form-group">
+                            <label for="seats">Seats</label>
+                            <input min="2" max="5" type="number" name="Seats" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputStatus">Trip Type</label>
+                            <select class="form-control custom-select" name="TripType">
+                                <option selected disabled>Select one</option>
+                                <option>One-Time</option>
+                                <option>Daily</option>
+                                <option>Weekly</option>
+                                <option>Monthly</option>
+                            </select>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- /.card-body -->
                 </div>
-              <div class="form-group">
-                <label for="seats">Seats</label>
-                <input min="2" max="5" type="number" id="seats" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputStatus">Trip Type</label>
-                <select class="form-control custom-select">
-                  <option selected disabled>Select one</option>
-                  <option>One-Time</option>
-                  <option>Daily</option>
-                  <option>Weekly</option>
-                    <option>Monthly</option>
-                </select>
-              </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
+                <!-- /.card -->
+            </div>
+            <div class="col-md-3"></div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <button type="submit"  class="btn btn-success float-right">Create</button>
+        <div class="row pb-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success float-left">Create</button>
+            </div>
         </div>
-      </div>
-      </form></>
-    </section>
+    </form>
+</section>

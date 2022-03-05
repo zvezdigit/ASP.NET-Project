@@ -19,7 +19,7 @@ namespace JoinMyCarTrip.Data.Entities
         public string Description { get; set; }
 
         [Required]
-        public bool IsNiceTripOrganizer { get; set; } //likes and dislikes to be counted and presented on the dashboard
+        public bool IsNiceOrganizer { get; set; } //likes and dislikes to be counted and presented on the dashboard
 
         [ForeignKey(nameof(Author))]
         [Required]
