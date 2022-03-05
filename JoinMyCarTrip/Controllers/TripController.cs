@@ -1,4 +1,5 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
+using JoinMyCarTrip.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoinMyCarTrip.Controllers
@@ -33,5 +34,17 @@ namespace JoinMyCarTrip.Controllers
         {
             return View();
         }
+
+        public IActionResult Details()
+        {
+            return View(new TripViewModel() {  AirConditioner = true }); //to be removed TripViewModel
+        }
+
+        public IActionResult MyTrips()
+        {
+            return View();
+        }
+
+
     }
 }

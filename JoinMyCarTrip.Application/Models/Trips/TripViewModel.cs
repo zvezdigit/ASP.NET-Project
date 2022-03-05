@@ -10,6 +10,8 @@ namespace JoinMyCarTrip.Application.Models
     {
         public string From { get; set; }
 
-        public string To { get; set; }  
+        public string To { get; set; }
+
+        public bool AirConditioner { get; set; } = true; //to be added to the car, not here and view Trip Details to be changed
     }
 }

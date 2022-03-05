@@ -4,16 +4,17 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <form method="post" action="/User/AddComment" role="form">
-            <div class="row">
-                <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="/User/AddComment" role="form">
+
                     <div class="form-group">
                         <label>Comment</label>
                         <textarea class="form-control" rows="3" placeholder="Enter your comment..."></textarea>
                     </div>
                     <div class="form-group clearfix">
                         <label>Did you like the trip organizer?</label>
-                        
+
                         <div class="icheck-success d-inline">
                             <input type="radio" name="IsNiceOrganizer" id="radioSuccess3">
                             <label for="radioSuccess3">
@@ -27,10 +28,18 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
-        </form>
+        </div>
+        <div class="row pb-3">
+
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success float-left">Add</button>
+            </div>
+            <!-- /.card-body -->
+        </div>
     </div>
-    <!-- /.card-body -->
 </div>
+
 <!-- /.card -->

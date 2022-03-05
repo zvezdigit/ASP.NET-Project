@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model JoinMyCarTrip.Application.Models.TripViewModel
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Trip</h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <img width="500" src="https://carwow-uk-wp-3.imgix.net/Volvo-XC40-white-scaled.jpg?auto=format&cs=tinysrgb&fit=clip&ixlib=rb-1.1.0&q=10&w=460" />
+        </div>
+
+        <div class="form-group">
+            <label>Start Point</label>
+            <input type="text" class="form-control" value="Varna" disabled />
+        </div>
+        <div class="form-group">
+            <label>End Point</label>
+            <input type="text" class="form-control" value="Sofia" disabled />
+        </div>
+        <div class="form-group">
+            <label>Departure Time</label>
+            <input type="text" class="form-control" value="2/03/2022 10:00" disabled />
+        </div>
+        <div class="form-group">
+            <label>Seats</label>
+            <input type="text" class="form-control" value="5" disabled />
+        </div>
+        <div class="form-group">
+            <label>Trip type</label>
+            <input type="text" class="form-control" value="weekly" disabled />
+        </div>
+        <div class="form-group">
+            <label>Car</label>
+            <input type="text" class="form-control" value="Model" disabled />
+        </div>
+        <div class="form-group">
+                        <label>Car Details</label>
+                        <div class="form-check">
+                            @*<input type="checkbox" name="AirConditioner" class="form-check-input" disabled />*@
+
+                            <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" disabled />
+                            <label class="form-check-label">Air Conditioner</label>
+                        </div>
+                        <div class="form-check">
+                             <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" disabled />
+                            <label class="form-check-label">Smoking</label>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" disabled />
+                            <label class="form-check-label">Luggage</label>
+                        </div>
+                        <div class="form-check">
+                            <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" disabled />
+                            <label class="form-check-label">Pets Allowed</label>
+                        </div>
+                    </div>
+    </div>
+</div>
+
+<div class="form-group text-center">
+    <div class="button-holder">
+        <a href="/Trip/AddUserToTrip?tripId=5Id" class="btn btn-primary btn-block text-uppercase">Join</a>
+    </div>
+</div>
+
+
