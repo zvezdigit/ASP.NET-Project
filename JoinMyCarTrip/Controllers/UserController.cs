@@ -28,7 +28,8 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
-        public IActionResult Profile()
+        // [Route("/user/profile/{userId:string}")]
+        public IActionResult Profile(string userId)
         {
             return View();
         }

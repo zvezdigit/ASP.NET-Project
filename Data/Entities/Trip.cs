@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,13 @@ namespace JoinMyCarTrip.Data.Entities
 
         [Required]
         public bool CanTakeLuggage { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(TripOrganizer))]
+        public string TripOrganizerId { get; set; }
+
+        public User TripOrganizer { get; set; }
+
         public ICollection<UserTrip> UserTrips { get; set; } = new HashSet<UserTrip>();
 
         public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
