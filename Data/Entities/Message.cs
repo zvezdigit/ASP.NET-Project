@@ -24,7 +24,7 @@ namespace JoinMyCarTrip.Data.Entities
 
         [ForeignKey(nameof(Author))]
         [Required]
-        public string UserId { get; set; }
+        public string AuthorId { get; set; }
         public User Author { get; set; }
 
 

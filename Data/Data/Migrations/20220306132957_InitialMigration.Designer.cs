@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
     [DbContext(typeof(JoinMyCarTripDbContext))]
-    [Migration("20220301211151_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20220306132957_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,19 +35,22 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<bool>("IsPetsAllowed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSmokingAllowed")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsWithAirConditioner")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LuggageAllowed")
                         .HasColumnType("bit");
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("PetsAllowed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Smoking")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -63,21 +66,27 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)");
 
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(36)");
+
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<bool>("IsNiceTripOrganizer")
+                    b.Property<bool>("IsNiceOrganizer")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("TripOrganizerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("TripOrganizerId");
 
                     b.ToTable("Comments");
                 });
@@ -86,6 +95,10 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)");
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(36)");
 
                     b.Property<DateTime>("Date")
@@ -100,15 +113,11 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(36)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(36)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TripId");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TripId");
 
                     b.ToTable("Messages");
                 });
@@ -121,13 +130,13 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
@@ -140,18 +149,14 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)");
 
-                    b.Property<bool>("CanTakeLuggage")
-                        .HasColumnType("bit");
+                    b.Property<string>("CarId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(36)");
 
                     b.Property<DateTime>("DepartureTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EndPoint")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("MiddlePoint")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
@@ -164,36 +169,21 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("TripTypeId")
+                    b.Property<string>("TripOrganizerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(36)");
 
+                    b.Property<string>("TripType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("TripTypeId");
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("TripOrganizerId");
 
                     b.ToTable("Trips");
-                });
-
-            modelBuilder.Entity("JoinMyCarTrip.Data.Entities.TripType", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(36)
-                        .HasColumnType("nvarchar(36)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SubName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TripTypes");
                 });
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.User", b =>
@@ -215,13 +205,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<bool>("IsTripOrganizer")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -237,8 +220,8 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
@@ -469,25 +452,33 @@ namespace JoinMyCarTrip.Data.Data.Migrations
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Comment", b =>
                 {
                     b.HasOne("JoinMyCarTrip.Data.Entities.User", "Author")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("JoinMyCarTrip.Data.Entities.User", "TripOrganizer")
+                        .WithMany("Comments")
+                        .HasForeignKey("TripOrganizerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Author");
+
+                    b.Navigation("TripOrganizer");
                 });
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Message", b =>
                 {
+                    b.HasOne("JoinMyCarTrip.Data.Entities.User", "Author")
+                        .WithMany("Messages")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("JoinMyCarTrip.Data.Entities.Trip", "Trip")
                         .WithMany("Messages")
                         .HasForeignKey("TripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JoinMyCarTrip.Data.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -498,13 +489,21 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Trip", b =>
                 {
-                    b.HasOne("JoinMyCarTrip.Data.Entities.TripType", "TripType")
+                    b.HasOne("JoinMyCarTrip.Data.Entities.Car", "Car")
                         .WithMany()
-                        .HasForeignKey("TripTypeId")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TripType");
+                    b.HasOne("JoinMyCarTrip.Data.Entities.User", "TripOrganizer")
+                        .WithMany()
+                        .HasForeignKey("TripOrganizerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("TripOrganizer");
                 });
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.User", b =>
@@ -602,6 +601,8 @@ namespace JoinMyCarTrip.Data.Data.Migrations
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.User", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Messages");
 
                     b.Navigation("UserTrips");
                 });

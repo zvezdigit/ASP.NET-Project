@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
-    public partial class InitialMigrations : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,8 +57,9 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     Year = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     IsWithAirConditioner = table.Column<bool>(type: "bit", nullable: false),
-                    IsSmokingAllowed = table.Column<bool>(type: "bit", nullable: false),
-                    IsPetsAllowed = table.Column<bool>(type: "bit", nullable: false)
+                    LuggageAllowed = table.Column<bool>(type: "bit", nullable: false),
+                    Smoking = table.Column<bool>(type: "bit", nullable: false),
+                    PetsAllowed = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,25 +71,12 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pets", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TripTypes",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SubName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TripTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,13 +190,11 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(340)", maxLength: 340, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    IsTripOrganizer = table.Column<bool>(type: "bit", nullable: false),
                     CarId = table.Column<string>(type: "nvarchar(36)", nullable: true),
                     PetId = table.Column<string>(type: "nvarchar(36)", nullable: true)
                 },
@@ -228,44 +214,57 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trips",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    StartPoint = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    MiddlePoint = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    EndPoint = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TripTypeId = table.Column<string>(type: "nvarchar(36)", nullable: false),
-                    Seats = table.Column<int>(type: "int", nullable: false),
-                    CanTakeLuggage = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trips", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Trips_TripTypes_TripTypeId",
-                        column: x => x.TripTypeId,
-                        principalTable: "TripTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    IsNiceTripOrganizer = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(36)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    IsNiceOrganizer = table.Column<bool>(type: "bit", nullable: false),
+                    AuthorId = table.Column<string>(type: "nvarchar(36)", nullable: false),
+                    TripOrganizerId = table.Column<string>(type: "nvarchar(36)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Comments_User_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_User_TripOrganizerId",
+                        column: x => x.TripOrganizerId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trips",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
+                    StartPoint = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    EndPoint = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TripType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Seats = table.Column<int>(type: "int", nullable: false),
+                    TripOrganizerId = table.Column<string>(type: "nvarchar(36)", nullable: false),
+                    CarId = table.Column<string>(type: "nvarchar(36)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trips", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trips_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trips_User_TripOrganizerId",
+                        column: x => x.TripOrganizerId,
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -278,7 +277,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
                     Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(36)", nullable: false),
+                    AuthorId = table.Column<string>(type: "nvarchar(36)", nullable: false),
                     TripId = table.Column<string>(type: "nvarchar(36)", nullable: false)
                 },
                 constraints: table =>
@@ -291,11 +290,11 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Messages_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Messages_User_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -362,9 +361,19 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserId",
+                name: "IX_Comments_AuthorId",
                 table: "Comments",
-                column: "UserId");
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_TripOrganizerId",
+                table: "Comments",
+                column: "TripOrganizerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_AuthorId",
+                table: "Messages",
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_TripId",
@@ -372,14 +381,14 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 column: "TripId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_UserId",
-                table: "Messages",
-                column: "UserId");
+                name: "IX_Trips_CarId",
+                table: "Trips",
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trips_TripTypeId",
+                name: "IX_Trips_TripOrganizerId",
                 table: "Trips",
-                column: "TripTypeId");
+                column: "TripOrganizerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_CarId",
@@ -434,9 +443,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
-
-            migrationBuilder.DropTable(
-                name: "TripTypes");
 
             migrationBuilder.DropTable(
                 name: "Cars");

@@ -15,15 +15,22 @@ namespace JoinMyCarTrip.Data.Entities
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(150)]
+        [MaxLength(300)]
         public string Description { get; set; }
 
         [Required]
         public bool IsNiceOrganizer { get; set; } //likes and dislikes to be counted and presented on the dashboard
 
-        [ForeignKey(nameof(Author))]
         [Required]
-        public string UserId { get; set; }
+        [ForeignKey(nameof(Author))]
+        public string AuthorId { get; set; }
+
         public User Author { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(TripOrganizer))]
+        public string TripOrganizerId { get; set; }
+
+        public User TripOrganizer { get; set; }
     }
 }

@@ -42,6 +42,20 @@ namespace Data
 
             });
 
+
+            modelBuilder.Entity<Comment>()
+                   .HasOne(c => c.TripOrganizer)
+                   .WithMany(c => c.Comments)
+                   .HasForeignKey(c => c.TripOrganizerId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                   .HasOne(c => c.Author)
+                   .WithMany(c => c.Messages)
+                   .HasForeignKey(c => c.AuthorId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

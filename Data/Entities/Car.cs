@@ -28,10 +28,13 @@ namespace JoinMyCarTrip.Data.Entities
         public bool IsWithAirConditioner { get; set; }
 
         [Required]
-        public bool IsSmokingAllowed { get; set; }
+        public bool LuggageAllowed { get; set; }
 
         [Required]
-        public bool IsPetsAllowed { get; set; }
+        public bool Smoking { get; set; }
+
+        [Required]
+        public bool PetsAllowed { get; set; }
 
     }
 }

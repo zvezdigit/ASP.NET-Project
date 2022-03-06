@@ -32,13 +32,16 @@ namespace JoinMyCarTrip.Data.Entities
         public int Seats { get; set; }
 
         [Required]
-        public bool CanTakeLuggage { get; set; }
-
-        [Required]
         [ForeignKey(nameof(TripOrganizer))]
         public string TripOrganizerId { get; set; }
 
         public User TripOrganizer { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Car))]
+        public string CarId { get; set; }
+
+        public Car Car { get; set; }
 
         public ICollection<UserTrip> UserTrips { get; set; } = new HashSet<UserTrip>();
 

@@ -15,7 +15,7 @@ namespace JoinMyCarTrip.Data.Entities
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string Username { get; set; }
 
         [Required]
@@ -35,9 +35,6 @@ namespace JoinMyCarTrip.Data.Entities
         [MaxLength(64)]
         public string Password { get; set; }
 
-        [Required]
-        public bool IsTripOrganizer { get; set; }
-
         [ForeignKey(nameof(Car))]
         public string CarId { get; set; }
         public Car Car { get; set; }
@@ -49,6 +46,8 @@ namespace JoinMyCarTrip.Data.Entities
         public ICollection<UserTrip> UserTrips { get; set; } = new HashSet<UserTrip>();
 
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+
+        public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
 
     }
 }
