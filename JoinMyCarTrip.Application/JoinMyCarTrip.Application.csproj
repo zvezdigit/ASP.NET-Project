@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\JoinMyCarTrip.Data.csproj" />
+    <ProjectReference Include="..\JoinMyCarTrip.Data\JoinMyCarTrip.Data.csproj" />
   </ItemGroup>
 
 </Project>
