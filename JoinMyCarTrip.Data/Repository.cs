@@ -5,18 +5,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Data;
 
 namespace JoinMyCarTrip.Data
 {
     public class Repository : IRepository
     {
-        public IEnumerable<Car> GetAllCars()
+        private readonly DbContext dbContext;
+
+        public Repository(JoinMyCarTripDbContext context)
         {
-            throw new NotImplementedException();
+            dbContext = context;
         }
-        public IEnumerable<Trip> GetAllTrips()
+
+        public void Add<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            DbSet<T>().Add(entity);
         }
+
+        public IQueryable<T> All<T>() where T : class
+        {
+            return DbSet<T>().AsQueryable();
+        }
+
+        public int SaveChanges()
+        {
+            return dbContext.SaveChanges();
+        }
+
+        private DbSet<T> DbSet<T>() where T : class
+        {
+            return dbContext.Set<T>();
+        }
+
     }
 }

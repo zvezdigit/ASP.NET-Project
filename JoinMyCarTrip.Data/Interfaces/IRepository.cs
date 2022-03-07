@@ -9,8 +9,10 @@ namespace JoinMyCarTrip.Data.Interfaces
 {
     public interface IRepository
     {
-        public IEnumerable<Trip> GetAllTrips();
+        void Add<T>(T entity) where T : class;
 
-        public IEnumerable<Car> GetAllCars();
+        IQueryable<T> All<T>() where T : class;
+
+        int SaveChanges();
     }
 }
