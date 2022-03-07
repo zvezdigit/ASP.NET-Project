@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinMyCarTrip.Data.Interfaces
-{
+namespace JoinMyCarTrip.Data.Common 
+{ 
+
     public interface IRepository
     {
         void Add<T>(T entity) where T : class;

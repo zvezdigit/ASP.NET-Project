@@ -35,10 +35,6 @@ namespace JoinMyCarTrip.Data.Entities
         [MaxLength(64)]
         public string Password { get; set; }
 
-        [ForeignKey(nameof(Car))]
-        public string CarId { get; set; }
-        public Car Car { get; set; }
-
         [ForeignKey(nameof(Pet))]
         public string PetId { get; set; }
         public Pet Pet { get; set; }
@@ -48,6 +44,8 @@ namespace JoinMyCarTrip.Data.Entities
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
         public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
+
+        public ICollection<Car> Cars { get; set; } = new HashSet<Car>();
 
     }
 }

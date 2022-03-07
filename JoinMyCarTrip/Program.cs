@@ -1,4 +1,5 @@
 using JoinMyCarTrip.Application.DependencyInjection;
+using JoinMyCarTrip.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,11 @@ builder.Services.AddApplicationServices(config);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider("dd.MM.yyyy"));
+    });
 
 var app = builder.Build();
 

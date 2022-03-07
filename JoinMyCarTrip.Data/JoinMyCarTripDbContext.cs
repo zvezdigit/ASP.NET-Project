@@ -6,7 +6,7 @@ namespace Data
 {
     public class JoinMyCarTripDbContext : IdentityDbContext
     {
-        public JoinMyCarTripDbContext(DbContextOptions<JoinMyCarTripDbContext> options) 
+        public JoinMyCarTripDbContext(DbContextOptions<JoinMyCarTripDbContext> options)
             : base(options)
         {
         }
@@ -54,7 +54,6 @@ namespace Data
                    .WithMany(c => c.Messages)
                    .HasForeignKey(c => c.AuthorId)
                    .OnDelete(DeleteBehavior.Restrict);
-
 
             base.OnModelCreating(modelBuilder);
         }

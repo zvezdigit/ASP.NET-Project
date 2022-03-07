@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
     [DbContext(typeof(JoinMyCarTripDbContext))]
-    [Migration("20220306132957_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220307215617_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,10 +52,15 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     b.Property<bool>("Smoking")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(36)");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cars");
                 });
@@ -192,9 +197,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(36)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(340)
@@ -224,8 +226,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CarId");
 
                     b.HasIndex("PetId");
 
@@ -449,6 +449,13 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Car", b =>
+                {
+                    b.HasOne("JoinMyCarTrip.Data.Entities.User", null)
+                        .WithMany("Cars")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Comment", b =>
                 {
                     b.HasOne("JoinMyCarTrip.Data.Entities.User", "Author")
@@ -508,15 +515,9 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.User", b =>
                 {
-                    b.HasOne("JoinMyCarTrip.Data.Entities.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId");
-
                     b.HasOne("JoinMyCarTrip.Data.Entities.Pet", "Pet")
                         .WithMany()
                         .HasForeignKey("PetId");
-
-                    b.Navigation("Car");
 
                     b.Navigation("Pet");
                 });
@@ -600,6 +601,8 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.User", b =>
                 {
+                    b.Navigation("Cars");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Messages");

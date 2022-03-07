@@ -1,28 +1,50 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Application.Models;
+using JoinMyCarTrip.Application.Models.Cars;
+using JoinMyCarTrip.Application.Models.Trips;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoinMyCarTrip.Controllers
 {
     public class TripController : Controller
+
     {
         private readonly ICarTripService tripService;
 
-        public TripController(ICarTripService tripService)
+        public TripController(ICarTripService _tripService)
         {
-            this.tripService = tripService;
+            this.tripService = _tripService;
         }
 
-        public IActionResult Index()
-        {
-            var trips = tripService.GetAllTrips();
+        //public IActionResult Index()
+        //{
+        //    var trips = tripService.GetAllTrips();
 
-            return View(trips);
-        }
+        //    return View(trips);
+        //}
 
         public IActionResult Create()
         {
-            return View();
+            var cars = new List<TripCarViewModel> { 
+                new TripCarViewModel
+                {
+                    Model = "Audi A6", CarId = "123"
+                },
+                new TripCarViewModel
+                {
+                    Model = "BMW X5", CarId = "567567"
+                },
+            };
+
+            return View(cars);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateTripViewModel model)
+        {
+            tripService.CreateTrip(model);
+
+            return Redirect("/Trip/AddCar");
         }
 
         public IActionResult AddCar()

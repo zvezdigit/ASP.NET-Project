@@ -1,5 +1,5 @@
 ﻿using Data;
-using JoinMyCarTrip.Data.Interfaces;
+using JoinMyCarTrip.Data.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,24 +46,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cars",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    IsWithAirConditioner = table.Column<bool>(type: "bit", nullable: false),
-                    LuggageAllowed = table.Column<bool>(type: "bit", nullable: false),
-                    Smoking = table.Column<bool>(type: "bit", nullable: false),
-                    PetsAllowed = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cars", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,21 +177,39 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(340)", maxLength: 340, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    CarId = table.Column<string>(type: "nvarchar(36)", nullable: true),
                     PetId = table.Column<string>(type: "nvarchar(36)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_Cars_CarId",
-                        column: x => x.CarId,
-                        principalTable: "Cars",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_User_Pets_PetId",
                         column: x => x.PetId,
                         principalTable: "Pets",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cars",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    IsWithAirConditioner = table.Column<bool>(type: "bit", nullable: false),
+                    LuggageAllowed = table.Column<bool>(type: "bit", nullable: false),
+                    Smoking = table.Column<bool>(type: "bit", nullable: false),
+                    PetsAllowed = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(36)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cars", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cars_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id");
                 });
 
@@ -361,6 +361,11 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cars_UserId",
+                table: "Cars",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_AuthorId",
                 table: "Comments",
                 column: "AuthorId");
@@ -389,11 +394,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 name: "IX_Trips_TripOrganizerId",
                 table: "Trips",
                 column: "TripOrganizerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_CarId",
-                table: "User",
-                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_PetId",
@@ -442,10 +442,10 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 name: "Trips");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "Cars");
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Pets");

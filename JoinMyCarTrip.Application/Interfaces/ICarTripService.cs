@@ -1,4 +1,5 @@
 ﻿using JoinMyCarTrip.Application.Models;
+using JoinMyCarTrip.Application.Models.Trips;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace JoinMyCarTrip.Application.Interfaces
 {
     public interface ICarTripService
     {
-        public IEnumerable<TripViewModel> GetAllTrips();
+        void CreateTrip(CreateTripViewModel model);
+       // public IEnumerable<TripViewModel> GetAllTrips();
     }
 }

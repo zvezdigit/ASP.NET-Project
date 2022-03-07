@@ -1,4 +1,7 @@
-﻿<!-- Main content -->
+﻿@using JoinMyCarTrip.Application.Models.Cars
+@model List<TripCarViewModel>
+
+<!-- Main content -->
 <section class="content">
     <form method="post" action="/Trip/Create">
         <div class="row">
@@ -27,7 +30,19 @@
                         </div>
                         <div class="form-group">
                             <label for="departureTime">Departure Time</label>
-                            <input type="text" class="form-control" id="departureTime" name="DepartureTime" placeholder="dd/MM/yyyy HH:mm">
+                            <input type="text" class="form-control" id="departureTime" name="DepartureTime" placeholder="dd.MM.yyyy HH:mm">
+                        </div>
+                        <div class="form-group">
+                            <label for="CarId">Car</label>
+                            <select class="form-control custom-select" name="CarId">
+                                <option selected disabled>Select one</option>
+
+                                @foreach(var car in @Model)
+                                {
+                                    <option value="@car.CarId">@car.Model</option>
+                                }
+                                
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="seats">Seats</label>

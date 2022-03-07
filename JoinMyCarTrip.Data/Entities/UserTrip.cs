@@ -18,6 +18,5 @@ namespace JoinMyCarTrip.Data.Entities
         public string TripId { get; set; }
 
         public Trip Trip { get; set; }
-
     }
 }

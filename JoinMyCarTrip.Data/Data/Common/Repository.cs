@@ -1,14 +1,7 @@
-﻿using JoinMyCarTrip.Data.Interfaces;
-using JoinMyCarTrip.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Data;
 
-namespace JoinMyCarTrip.Data
+namespace JoinMyCarTrip.Data.Common
 {
     public class Repository : IRepository
     {
