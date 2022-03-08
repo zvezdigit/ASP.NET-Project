@@ -26,7 +26,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
         public string TripType { get; set; }
 
         [Required]
-        [Range(1,6)]
+        [Range(2,7)]
         public int Seats { get; set; }
 
         [Required]

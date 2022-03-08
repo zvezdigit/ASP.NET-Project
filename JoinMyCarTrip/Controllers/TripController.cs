@@ -25,6 +25,11 @@ namespace JoinMyCarTrip.Controllers
 
         public IActionResult Create()
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return ;
+            //}
+
             var cars = new List<TripCarViewModel> { 
                 new TripCarViewModel
                 {
@@ -61,6 +66,10 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
+        public IActionResult CreateTripAddCar()
+        {
+            return View();
+        }
 
     }
 }
