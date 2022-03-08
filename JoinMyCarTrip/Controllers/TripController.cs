@@ -46,12 +46,6 @@ namespace JoinMyCarTrip.Controllers
 
             return Redirect("/Trip/AddCar");
         }
-
-        public IActionResult AddCar()
-        {
-            return View();
-        }
-
         public IActionResult All()
         {
             return View();
