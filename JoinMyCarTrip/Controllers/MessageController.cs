@@ -9,10 +9,6 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
-        public IActionResult All()
-        {
-            return View();
-        }
 
     }
 }
