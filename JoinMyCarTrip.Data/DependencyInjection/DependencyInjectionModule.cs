@@ -12,10 +12,8 @@ namespace JoinMyCarTrip.Data.DependencyInjection
         {
             serviceCollection
                 .AddScoped<IRepository, Repository>()
-                .AddDbContext<JoinMyCarTripDbContext>(options => options.UseSqlServer(connectionString))
-                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<JoinMyCarTripDbContext>();   
-
+                .AddDbContext<JoinMyCarTripDbContext>(options => options.UseSqlServer(connectionString));
+                
             return serviceCollection;
         }
     }

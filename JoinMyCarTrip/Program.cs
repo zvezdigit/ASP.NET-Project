@@ -1,9 +1,14 @@
+using Data;
 using JoinMyCarTrip.Application.DependencyInjection;
 using JoinMyCarTrip.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("JoinMyCarTrip");
+
+builder.Services.AddDbContext<JoinMyCarTripDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
@@ -13,6 +18,9 @@ var config = new ConfigurationBuilder()
 builder.Services.AddApplicationServices(config);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services
+    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<JoinMyCarTripDbContext>();
 
 
 builder.Services.AddControllersWithViews()

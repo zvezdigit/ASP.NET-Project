@@ -30,7 +30,7 @@ namespace JoinMyCarTrip.Controllers
             //    return ;
             //}
 
-            var cars = new List<TripCarViewModel> { 
+            var cars = new List<TripCarViewModel> {
                 new TripCarViewModel
                 {
                     Model = "Audi A6", CarId = "123"
@@ -47,10 +47,12 @@ namespace JoinMyCarTrip.Controllers
         [HttpPost]
         public IActionResult Create(CreateTripViewModel model)
         {
+          
             tripService.CreateTrip(model);
 
             return Redirect("/Trip/AddCar");
         }
+
         public IActionResult All()
         {
             return View();
@@ -58,7 +60,7 @@ namespace JoinMyCarTrip.Controllers
 
         public IActionResult Details()
         {
-            return View(new TripViewModel() {  AirConditioner = true }); //to be removed TripViewModel
+            return View(new TripViewModel() { AirConditioner = true }); //to be removed TripViewModel
         }
 
         public IActionResult MyTrips()

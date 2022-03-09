@@ -10,12 +10,12 @@ namespace JoinMyCarTrip.Application.Models.Trips
     public class CreateTripViewModel
     {
         [Required]
-        [MinLength(2)]
-        [MaxLength(150)]
+        [MinLength(10)]
+        [StringLength(150, ErrorMessage ="{0} length is between {2} and {1}.", MinimumLength = 10)]
         public string StartPoint { get; set; }
 
         [Required]
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(150)]
         public string EndPoint { get; set; }
 
@@ -23,6 +23,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
         public DateTime DepartureTime { get; set; }
 
         [Required]
+        [MaxLength(20)]
         public string TripType { get; set; }
 
         [Required]
