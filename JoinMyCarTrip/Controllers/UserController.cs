@@ -6,27 +6,27 @@ namespace JoinMyCarTrip.Controllers
     public class UserController: Controller
     {
 
-        public IActionResult Login()
-        {
-            if (User.Identity?.IsAuthenticated == true)
-            {
-                return Redirect("/Home");
-            }
+        //public IActionResult Login()
+        //{
+        //    if (User.Identity?.IsAuthenticated == true)
+        //    {
+        //        return Redirect("/Home");
+        //    }
 
 
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        public IActionResult Register()
-        {
-            if (User.Identity?.IsAuthenticated == true)
-            {
-                return Redirect("/Home");
-            }
+        //public IActionResult Register()
+        //{
+        //    if (User.Identity?.IsAuthenticated == true)
+        //    {
+        //        return Redirect("/Home");
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
 
         // [Route("/user/profile/{userId:string}")]
         public IActionResult Profile(string userId)
@@ -40,6 +40,11 @@ namespace JoinMyCarTrip.Controllers
         }
 
         public IActionResult AddComment()
+        {
+            return View();
+        }
+
+        public IActionResult AddProfileInfo()
         {
             return View();
         }

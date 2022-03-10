@@ -1,29 +1,74 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>@ViewData["Title"] - JoinMyCarTrip</title>
+    <title>@ViewData["Title"] - JoinMyCarTrip</title>
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="~/css/adminlte.min.css">
-  <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-  <link rel="stylesheet" href="~/css/style.css" />
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  @await RenderSectionAsync("Head", false)
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @await RenderSectionAsync("Head", false)
 
 </head>
-    <body class="hold-transition sidebar-mini">
-          @RenderBody()
-    </body>
+<body>
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+            </ul>
+            <partial name="_LoginPartial" />
+            <!-- Right navbar links -->
+        </nav>
+        <!-- /.navbar -->
+        <!-- Content Wrapper. Contains page content -->
+        <div>
+          
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Travel anywhere for free
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2014-2019 <a href="/">JoinMyCarTrip</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/js/adminlte.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", false)
+
+</body>
 </html>

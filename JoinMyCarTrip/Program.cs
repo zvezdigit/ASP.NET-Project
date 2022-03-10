@@ -1,5 +1,6 @@
 using Data;
 using JoinMyCarTrip.Application.DependencyInjection;
+using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

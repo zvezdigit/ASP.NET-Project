@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace JoinMyCarTrip.Data.Common
 {
