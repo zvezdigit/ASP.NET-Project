@@ -45,19 +45,14 @@
                      <span class="fas fa-envelope"></span>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                 <div class="form-floating">
+                @* <div class="form-floating">
                     <input asp-for="Input.FullName" class="form-control" placeholder="Full Name" autocomplete="username" aria-required="true" />
                      <span class="fas fa-envelope"></span>
                     <span asp-validation-for="Input.FullName" class="text-danger"></span>
-                </div>
+                </div>*@
                  <div class="form-floating">
-                    <input asp-for="Input.Username" class="form-control" placeholder="Username" autocomplete="username" aria-required="true" />
-                     <span class="fas fa-envelope"></span>
-                    <span asp-validation-for="Input.Username" class="text-danger"></span>
-                </div>
-                 <div class="form-floating">
-                    <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone Number" autocomplete="username" aria-required="true" />
-                     <span class="fas fa-envelope"></span>
+                    <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone Number" autocomplete="phonenumber" aria-required="true" />
+                     <span class="fas fa-phone"></span>
                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                 </div>
                   <div class="form-floating">

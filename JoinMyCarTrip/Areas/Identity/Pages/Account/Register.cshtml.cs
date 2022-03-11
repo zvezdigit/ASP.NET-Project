@@ -79,15 +79,10 @@ namespace JoinMyCarTrip.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-            [Display(Name = "Full Name")]
-            public string FullName { get; set; }
-
-            [Required]
-            [StringLength(25, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
+            //[Required]
+            //[StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            //[Display(Name = "Full Name")]
+            //public string FullName { get; set; }
 
 
             [StringLength(30, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
@@ -131,6 +126,7 @@ namespace JoinMyCarTrip.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
