@@ -20,7 +20,7 @@ builder.Services.AddApplicationServices(config);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<JoinMyCarTripDbContext>();
 
 

@@ -1,39 +1,23 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JoinMyCarTrip.Data.Entities
 {
-    public class User
+    public class ApplicationUser : IdentityUser 
+    
     {
-        [Key]
-        [MaxLength(36)]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
-
-        [Required]
-        [MaxLength(40)]
-        public string Username { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string FullName { get; set; }
 
-        [Required]
-        [MaxLength(60)]
-        public string PhoneNumber { get; set; }
-
-
-        [Required]
-        [MaxLength(340)]
-        public string Email { get; set; }
-
-        [Required]
-        [MaxLength(64)]
-        public string Password { get; set; }
 
         [ForeignKey(nameof(Pet))]
         public string PetId { get; set; }

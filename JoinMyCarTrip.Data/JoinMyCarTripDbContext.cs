@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class JoinMyCarTripDbContext : IdentityDbContext
+    public class JoinMyCarTripDbContext : IdentityDbContext<ApplicationUser>
     {
         public JoinMyCarTripDbContext(DbContextOptions<JoinMyCarTripDbContext> options)
             : base(options)

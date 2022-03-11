@@ -35,7 +35,7 @@ namespace JoinMyCarTrip.Data.Entities
         [ForeignKey(nameof(TripOrganizer))]
         public string TripOrganizerId { get; set; }
 
-        public User TripOrganizer { get; set; }
+        public ApplicationUser TripOrganizer { get; set; }
 
         [Required]
         [ForeignKey(nameof(Car))]

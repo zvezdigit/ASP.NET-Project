@@ -12,7 +12,7 @@ namespace JoinMyCarTrip.Data.Entities
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [ForeignKey(nameof(Trip))]
         public string TripId { get; set; }
