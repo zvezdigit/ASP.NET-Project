@@ -1,4 +1,5 @@
 ﻿using JoinMyCarTrip.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,44 @@ namespace JoinMyCarTrip.Data
     internal static class DatabaseSeeder
     {
         public static void SeedDatabase(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedTripTypes();
+
+            modelBuilder.SeedSuperAdmin();
+        }
+
+        private static void SeedSuperAdmin(this ModelBuilder modelBuilder)
+        {
+            const string roleId = "c8c2b9c6-17b9-4cc3-b3d6-d2006471dc82";
+            const string adminId = "670b3e98-faec-4026-994a-cd3a4a231bf4";
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = "SuperAdmin",
+                NormalizedName = "SUPERADMIN",
+                Id = roleId,
+                ConcurrencyStamp = "1"
+            });
+
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = adminId,
+                Email = "pesho@abv.com",
+                EmailConfirmed = false,
+                FullName = "Super Pesho",
+                UserName = "pesho@abv.bg",
+                NormalizedUserName = "PESHO@ABV.BG",
+                PasswordHash = "AQAAAAEAACcQAAAAEKSVbyMRRKapKw7uTWWqVsNkuegEau2em6hA5EWnPzoTn6uFGWWhktxPAr08m6k3xw=="
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
+        }
+
+        private static void SeedTripTypes(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TripType>().HasData(new[]
             {
@@ -35,19 +74,6 @@ namespace JoinMyCarTrip.Data
                     Type = "Monthly"
                 },
             });
-
-            // TODO: seed admin user
-            // var rootAdmin = new ApplicationUser
-            // {
-            //     Id = "",
-            //     FullName = "",
-            //     UserName = "",
-            // 
-            // };
-            // 
-            // modelBuilder.Entity<ApplicationUser>().HasData(new[] {
-            //     
-            // });
         }
     }
 }

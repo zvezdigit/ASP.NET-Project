@@ -1,6 +1,7 @@
 using Data;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.ModelBinders;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddApplicationDbContexts(config);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services
     .AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<JoinMyCarTripDbContext>();
 
 
