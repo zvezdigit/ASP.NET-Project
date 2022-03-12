@@ -63,11 +63,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <img src="~/img/avatar.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="/User/Profile" class="nav-link">@User.Identity?.Name</a>
+                            <a href="/User/Profile" class="nav-link">@((await UserManager.GetUserAsync(User)).FullName)</a>
                         </div>
                     </div>
-
-
                     <!-- Sidebar Menu -->
                     <partial name="_MainMenu" />
             

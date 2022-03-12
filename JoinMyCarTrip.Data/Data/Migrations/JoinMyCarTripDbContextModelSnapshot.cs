@@ -281,7 +281,29 @@ namespace JoinMyCarTrip.Data.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TripType");
+                    b.ToTable("TripTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e651e301-ab94-4a1c-8b57-bbb9b63904e2",
+                            Type = "One-time"
+                        },
+                        new
+                        {
+                            Id = "97673d10-47a9-4e3e-b8ec-adcec8929f6e",
+                            Type = "Daily"
+                        },
+                        new
+                        {
+                            Id = "5fa1d2f7-ebee-418d-9f61-028908b003c1",
+                            Type = "Weekly"
+                        },
+                        new
+                        {
+                            Id = "ffe4071c-da82-411a-bedc-0d6124ceff85",
+                            Type = "Monthly"
+                        });
                 });
 
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.UserTrip", b =>

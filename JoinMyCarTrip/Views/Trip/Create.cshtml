@@ -37,7 +37,7 @@
                             <select class="form-control custom-select" name="CarId">
                                 <option selected disabled>Select one</option>
 
-                                @foreach(var car in @Model)
+                                @foreach(var car in @Model.Cars)
                                 {
                                     <option value="@car.CarId">@car.Model</option>
                                 }
@@ -52,10 +52,12 @@
                             <label for="inputStatus">Trip Type</label>
                             <select class="form-control custom-select" name="TripType">
                                 <option selected disabled>Select one</option>
-                                <option>One-Time</option>
-                                <option>Daily</option>
-                                <option>Weekly</option>
-                                <option>Monthly</option>
+
+                                @foreach(var tripType in @Model.TripTypes)
+                                {
+                                    <option value="@tripType.Id">@tripType.Type</option>
+                                        
+                                }
                             </select>
                         </div>
                         <!-- /.card-body -->

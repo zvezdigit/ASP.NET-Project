@@ -1,4 +1,5 @@
-﻿using JoinMyCarTrip.Data.Entities;
+﻿using JoinMyCarTrip.Data;
+using JoinMyCarTrip.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ namespace Data
         public DbSet<UserTrip> UserTrips { get; set; }
         public DbSet<Message> Messages { get; set; }
 
+        public DbSet<TripType> TripTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserTrip>(e =>
@@ -39,9 +42,7 @@ namespace Data
                     .WithMany(ut => ut.UserTrips)
                     .HasForeignKey(op => op.TripId)
                     .OnDelete(DeleteBehavior.Restrict);
-
             });
-
 
             modelBuilder.Entity<Comment>()
                    .HasOne(c => c.TripOrganizer)
@@ -60,6 +61,8 @@ namespace Data
                   .WithMany(c => c.Cars)
                   .HasForeignKey(c => c.UserId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.SeedDatabase();
 
             base.OnModelCreating(modelBuilder);
         }

@@ -41,7 +41,9 @@ namespace JoinMyCarTrip.Controllers
                 },
             };
 
-            return View(cars);
+            var tripTypes = tripService.GetAllTripTypes().ToList();
+
+            return View(new { Cars = cars, TripTypes = tripTypes });
         }
 
         [HttpPost]

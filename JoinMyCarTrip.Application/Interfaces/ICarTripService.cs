@@ -11,6 +11,8 @@ namespace JoinMyCarTrip.Application.Interfaces
     public interface ICarTripService
     {
         void CreateTrip(CreateTripViewModel model);
-       // public IEnumerable<TripViewModel> GetAllTrips();
+        IEnumerable<TripTypeViewModel> GetAllTripTypes();
+
+        // public IEnumerable<TripViewModel> GetAllTrips();
     }
 }

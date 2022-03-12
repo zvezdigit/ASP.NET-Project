@@ -51,6 +51,15 @@ namespace JoinMyCarTrip.Application.Services
             //repository.SaveChanges();
         }
 
+        public IEnumerable<TripTypeViewModel> GetAllTripTypes()
+        {
+            return repository.All<TripType>().Select(x => new TripTypeViewModel
+            {
+                Id = x.Id,
+                Type = x.Type
+            });
+        }
+
         //public IEnumerable<TripViewModel> GetAllTrips()
         //{
         //    //var trips = repository.GetAllTrips();

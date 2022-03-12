@@ -1,22 +1,16 @@
 using Data;
-using JoinMyCarTrip.Application.DependencyInjection;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.ModelBinders;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("JoinMyCarTrip");
-
-builder.Services.AddDbContext<JoinMyCarTripDbContext>(options =>
-    options.UseSqlServer(connectionString));
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .Build();
 
 // Add services to the container.
-builder.Services.AddApplicationServices(config);
+builder.Services.AddApplicationServices();
+builder.Services.AddApplicationDbContexts(config);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services
