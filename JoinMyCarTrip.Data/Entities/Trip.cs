@@ -26,7 +26,9 @@ namespace JoinMyCarTrip.Data.Entities
         public DateTime DepartureTime { get; set; }
 
         [Required]
-        public string TripType { get; set; }
+        [ForeignKey(nameof(TripType))]
+        public string TripTypeId { get; set; }
+        public TripType TripType { get; set; }
 
         [Required]
         public int Seats { get; set; }

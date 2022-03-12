@@ -23,19 +23,19 @@ namespace JoinMyCarTrip.Application.Services
         public void CreateTrip(CreateTripViewModel model)
         {
             
-            var trip = new Trip()
-            {
-                StartPoint = model.StartPoint,
-                EndPoint = model.EndPoint,
-                Seats = model.Seats,
-                TripType = model.TripType,
-                TripOrganizerId = "1",
-                DepartureTime = model.DepartureTime,
-                CarId = model.CarId
-            };
+            //var trip = new Trip()
+            //{
+            //    StartPoint = model.StartPoint,
+            //    EndPoint = model.EndPoint,
+            //    Seats = model.Seats,
+            //    TripType = model.TripType,
+            //    TripOrganizerId = "1",
+            //    DepartureTime = model.DepartureTime,
+            //    CarId = model.CarId
+            //};
 
-            repository.Add(trip);
-            repository.SaveChanges();
+            //repository.Add(trip);
+            //repository.SaveChanges();
 
             //var user = trip.TripOrganizer;
 

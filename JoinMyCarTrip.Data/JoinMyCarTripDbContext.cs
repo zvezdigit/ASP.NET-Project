@@ -50,10 +50,16 @@ namespace Data
                    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Message>()
-                   .HasOne(c => c.Author)
-                   .WithMany(c => c.Messages)
-                   .HasForeignKey(c => c.AuthorId)
+                   .HasOne(m => m.Author)
+                   .WithMany(m => m.Messages)
+                   .HasForeignKey(m => m.AuthorId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Car>()
+                  .HasOne(c => c.User)
+                  .WithMany(c => c.Cars)
+                  .HasForeignKey(c => c.UserId)
+                  .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
         }

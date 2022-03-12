@@ -19,10 +19,6 @@ namespace JoinMyCarTrip.Data.Entities
         public string FullName { get; set; }
 
 
-        [ForeignKey(nameof(Pet))]
-        public string PetId { get; set; }
-        public Pet Pet { get; set; }
-
         public ICollection<UserTrip> UserTrips { get; set; } = new HashSet<UserTrip>();
 
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
