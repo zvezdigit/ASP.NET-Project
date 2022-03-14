@@ -29,5 +29,7 @@ namespace JoinMyCarTrip.Data
         public const int SeatsMax = 7;
 
         public const int TripTypeMaxLength = 20;
+
+        public const string AdminRole = "SuperAdmin";
     }
 }

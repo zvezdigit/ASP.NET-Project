@@ -1,11 +1,7 @@
 ﻿using JoinMyCarTrip.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data
 {
@@ -25,8 +21,8 @@ namespace JoinMyCarTrip.Data
 
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
-                Name = "SuperAdmin",
-                NormalizedName = "SUPERADMIN",
+                Name = AdminRole,
+                NormalizedName = AdminRole.ToUpper(),
                 Id = roleId,
                 ConcurrencyStamp = "1"
             });

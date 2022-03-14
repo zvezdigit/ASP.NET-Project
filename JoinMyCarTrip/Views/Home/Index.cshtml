@@ -4,34 +4,9 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-
-
     if (SignInManager.IsSignedIn(User))
     {
-        ApplicationUser user = await UserManager.GetUserAsync(User);
-        var userRoles = await UserManager.GetRolesAsync(user);
-        bool isAdmin = false;
-
-        // var roles = String.Join(",", userRoles);
-
-        foreach (var role in userRoles)
-        {
-            if (role == "SuperAdmin")
-            {
-                isAdmin = true;
-            }
-        }
-
-
-        if (isAdmin == true)
-        {
-            Layout = "/Areas/Admin/Views/_Layout_admin.cshtml";
-        }
-        else
-        {
-            Layout = "/Views/Shared/_Layout.cshtml";
-        }
-
+        Layout = "/Views/Shared/_Layout.cshtml";
     }
     else
     {
