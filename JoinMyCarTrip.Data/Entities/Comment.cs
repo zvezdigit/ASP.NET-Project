@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data.Entities
 {
     public class Comment
     {
         [Key]
-        [MaxLength(36)]
+        [MaxLength(GuidMaxLength)]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(300)]
+        [MaxLength(DescriptionCommentMaxLength)]
         public string Description { get; set; }
 
         [Required]

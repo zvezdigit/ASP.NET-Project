@@ -1,21 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data.Entities
 {
+
     public class ApplicationUser : IdentityUser 
     
     {
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(StandartMaxLength)]
         public string FullName { get; set; }
 
 

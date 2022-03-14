@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data.Entities
 {
     public class Pet
     {
         [Key]
-        [MaxLength(36)]
+        [MaxLength(GuidMaxLength)]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(10)]
+        [MaxLength(PetTypeMaxLenth)]
         public string Type { get; set; }  //cat or dog or bird
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(PetDescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

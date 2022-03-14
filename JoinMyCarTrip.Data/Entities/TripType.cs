@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data.Entities
 {
@@ -11,11 +7,11 @@ namespace JoinMyCarTrip.Data.Entities
     {
 
         [Key]
-        [MaxLength(36)]
+        [MaxLength(GuidMaxLength)]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(TripTypeMaxLength)]
         public string Type { get; set; }
     }
 }

@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Data.Entities
 {
     public class Trip
     {
         [Key]
-        [MaxLength(36)]
+        [MaxLength(GuidMaxLength)]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(150)]
+        [MaxLength(StartEndPointMaxLength)]
         public string StartPoint { get; set; }
 
         [Required]
-        [MaxLength(150)]
+        [MaxLength(StartEndPointMaxLength)]
         public string EndPoint { get; set; }
 
         [Required]
@@ -31,6 +27,7 @@ namespace JoinMyCarTrip.Data.Entities
         public TripType TripType { get; set; }
 
         [Required]
+        [Range(SeatsMin,SeatsMax)]
         public int Seats { get; set; }
 
         [Required]
