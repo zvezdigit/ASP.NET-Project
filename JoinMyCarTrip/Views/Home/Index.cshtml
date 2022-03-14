@@ -1,11 +1,37 @@
 ﻿@using JoinMyCarTrip.Data.Entities
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
-    if(SignInManager.IsSignedIn(User))
+
+
+    if (SignInManager.IsSignedIn(User))
     {
-        Layout = "/Views/Shared/_Layout.cshtml";
+        ApplicationUser user = await UserManager.GetUserAsync(User);
+        var userRoles = await UserManager.GetRolesAsync(user);
+        bool isAdmin = false;
+
+        // var roles = String.Join(",", userRoles);
+
+        foreach (var role in userRoles)
+        {
+            if (role == "SuperAdmin")
+            {
+                isAdmin = true;
+            }
+        }
+
+
+        if (isAdmin == true)
+        {
+            Layout = "/Areas/Admin/Views/_Layout_admin.cshtml";
+        }
+        else
+        {
+            Layout = "/Views/Shared/_Layout.cshtml";
+        }
+
     }
     else
     {
@@ -14,8 +40,8 @@
 }
 
 <div class="text-left">
-    <h1 class="pl-2 display-4" style="background-image: url(/img/pexels-pixabay-163688.jpg); background-size: contain; background-repeat: no-repeat; height: 1200px; color: white;" >
-       Welcome to Join My Car Trip!
+    <h1 class="pl-2 display-4" style="background-image: url(/img/pexels-pixabay-163688.jpg); background-size: contain; background-repeat: no-repeat; height: 1200px; color: white;">
+        Welcome to Join My Car Trip!
     </h1>
     @*<img src="~/img/pexels-pixabay-163688.jpg" style="width: 100%; height: auto"/>*@
 </div>
