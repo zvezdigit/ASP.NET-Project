@@ -1,14 +1,8 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
-using JoinMyCarTrip.Application.Models;
 using JoinMyCarTrip.Application.Models.Trips;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace JoinMyCarTrip.Application.Services
 {

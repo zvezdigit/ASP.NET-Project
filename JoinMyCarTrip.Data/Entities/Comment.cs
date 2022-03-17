@@ -28,5 +28,7 @@ namespace JoinMyCarTrip.Data.Entities
         public string TripOrganizerId { get; set; }
 
         public ApplicationUser TripOrganizer { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

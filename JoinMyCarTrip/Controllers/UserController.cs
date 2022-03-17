@@ -1,37 +1,27 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using JoinMyCarTrip.Application.Interfaces;
+using JoinMyCarTrip.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoinMyCarTrip.Controllers
 {
-    public class UserController: Controller
+    public class UserController : BaseController
     {
-
-        //public IActionResult Login()
-        //{
-        //    if (User.Identity?.IsAuthenticated == true)
-        //    {
-        //        return Redirect("/Home");
-        //    }
-
-
-
-        //    return View();
-        //}
-
-        //public IActionResult Register()
-        //{
-        //    if (User.Identity?.IsAuthenticated == true)
-        //    {
-        //        return Redirect("/Home");
-        //    }
-
-        //    return View();
-        //}
-
-        // [Route("/user/profile/{userId:string}")]
-        public IActionResult Profile(string userId)
+        private readonly IUserService userService;
+        
+        public UserController(IUserService _userService, UserManager<ApplicationUser> userManager) 
+            : base(userManager)
         {
-            return View();
+            userService = _userService;
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var userId = await GetUserIdAsync();
+            var profile = userService.Profile(userId);
+
+            return View(profile);
         }
 
         public IActionResult AddPet()
@@ -44,9 +34,6 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
-        public IActionResult AddProfileInfo()
-        {
-            return View();
-        }
+      
     }
 }

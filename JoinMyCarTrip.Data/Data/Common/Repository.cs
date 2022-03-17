@@ -9,11 +9,16 @@ namespace JoinMyCarTrip.Data.Common
     public class Repository : IRepository
     {
 
+        public Repository(JoinMyCarTripDbContext context)
+        {
+            Context = context;
+        }
+
         /// <summary>
         /// Entity framework DB context holding connection information and properties
         /// and tracking entity states 
         /// </summary>
-        protected DbContext Context { get; set; }
+        protected JoinMyCarTripDbContext Context { get; private set; }
 
         /// <summary>
         /// Representation of table in database
