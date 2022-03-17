@@ -13,8 +13,6 @@ namespace JoinMyCarTrip.Application.Models.Users
 
         public string Description { get; set; }
 
-        public int Likes { get; set; }
-
         public DateTime Date { get; set; } 
     }
 }

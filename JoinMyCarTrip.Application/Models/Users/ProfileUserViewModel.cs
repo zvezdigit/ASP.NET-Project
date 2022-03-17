@@ -15,10 +15,9 @@ namespace JoinMyCarTrip.Application.Models.Users
         public string Email { get; set; }
 
         public string Phone { get; set; }
-
-     
-        public UserPetViewModel Pet { get; set; }
-
+        public int? Likes { get; set; }
         public ICollection<CommentViewModel> Comments { get; set; }
+
+        public ICollection<UserPetViewModel> Pet { get; set; }
     }
 }

@@ -22,5 +22,7 @@ namespace JoinMyCarTrip.Data.Entities
 
         public ICollection<Car> Cars { get; set; } = new HashSet<Car>();
 
+        public ICollection<Pet> Pets { get; set; } = new HashSet<Pet>();
+
     }
 }

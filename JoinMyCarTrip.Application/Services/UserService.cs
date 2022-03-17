@@ -39,10 +39,16 @@ namespace JoinMyCarTrip.Application.Services
                     {
                         Description = comment.Description,
                         Author = comment.Author.FullName,
-                        Likes = comment.IsNiceOrganizer ? 1 : 0,
                         Date = comment.Date
                     }).ToList(),
-                    Pet = pet
+                    Pet = user.Pets
+                    .Select(pet=> new UserPetViewModel
+                    {
+                        Type = pet.Type,
+                        Description = pet.Description
+                    }).ToList(),
+                    Likes = user.Comments.Count(c => c.IsNiceOrganizer)
+
                 }).FirstOrDefault();
         }
     }
