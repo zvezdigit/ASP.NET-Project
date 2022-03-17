@@ -10,6 +10,8 @@ namespace JoinMyCarTrip.Data
     {
         public const int StandartMaxLength = 100;
 
+        public const int StandartMinLength = 3;
+
         public const int GuidMaxLength = 36;
 
         public const int ImageUrlMaxLength = 300;
@@ -27,6 +29,10 @@ namespace JoinMyCarTrip.Data
         public const int SeatsMin = 2;
 
         public const int SeatsMax = 7;
+
+        public const int MinYear = 1990;
+
+        public const int MaxYear = 2100;
 
         public const int TripTypeMaxLength = 20;
 

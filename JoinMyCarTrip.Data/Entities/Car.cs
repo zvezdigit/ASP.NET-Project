@@ -21,16 +21,16 @@ namespace JoinMyCarTrip.Data.Entities
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; }
 
-        [Required]
+     
         public bool IsWithAirConditioner { get; set; }
 
-        [Required]
+      
         public bool LuggageAllowed { get; set; }
 
-        [Required]
+       
         public bool Smoking { get; set; }
 
-        [Required]
+      
         public bool PetsAllowed { get; set; }
 
         [Required]

@@ -1,62 +1,68 @@
-﻿
+﻿@model JoinMyCarTrip.Application.Models.Cars.CarViewModel
 
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <h1>Add Car</h1>
 
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Car</h3>
+        <form method="post" action="/Car/AddCar">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Car</h3>
 
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <form method="post" action="/Car/AddCar">
+                <div class="card-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label for="inputModel">Brand and Model</label>
-                        <input type="text" name="Model" class="form-control" />
+                        <label asp-for="@Model.BrandAndModel" class="control-label">Brand and Model </label>
+                        <input asp-for="@Model.BrandAndModel" class="form-control" />
+                        <span asp-validation-for="BrandAndModel" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="year">Year</label>
-                        <input type="int" name="Year" class="form-control" />
+                        <label asp-for="@Model.Year">Year</label>
+                        <input asp-for="@Model.Year" min="1990" max="2100" class="form-control" />
+                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="inputImageUrl">ImageUrl</label>
-                        <input type="text" name="ImageUrl" class="form-control" />
+                        <label asp-for="@Model.ImageUrl">ImageUrl</label>
+                        <input asp-for="@Model.ImageUrl" class="form-control" />
+                         <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label>Car Details</label>
                         <div class="form-check">
-                            <input type="checkbox" name="IsWithAirConditioner" class="form-check-input" />
-                            <label class="form-check-label">Air Conditioner</label>
+                            <input asp-for="@Model.IsWithAirConditioner" class="form-check-input" />
+                            <label asp-for="@Model.IsWithAirConditioner" class="form-check-label">Air Conditioner</label>
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" name="Smoking" class="form-check-input" />
-                            <label class="form-check-label">Smoking</label>
+                            <input asp-for="@Model.Smoking" class="form-check-input" />
+                            <label asp-for="@Model.Smoking" class="form-check-label">Smoking</label>
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" name="LuggageAllowed" class="form-check-input" />
-                            <label class="form-check-label">Luggage</label>
+                            <input asp-for="@Model.LuggageAllowed" class="form-check-input" />
+                            <label asp-for="@Model.LuggageAllowed" class="form-check-label">Luggage</label>
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" name="PetsAllowed" class="form-check-input" />
-                            <label class="form-check-label">Pets Allowed</label>
+                            <input asp-for="@Model.PetsAllowed" class="form-check-input" />
+                            <label asp-for="@Model.PetsAllowed" class="form-check-label">Pets Allowed</label>
                         </div>
                     </div>
-                </form>
+                </div>
+                <div class="col-md-3"></div>
             </div>
-            <div class="col-md-3"></div>
-        </div>
-        <div class="row pb-3">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success float-left">Add</button>
+            <div class="row pb-3">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success float-left">Add</button>
+                </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-﻿@using JoinMyCarTrip.Application.Models.Users
+﻿@model JoinMyCarTrip.Application.Models.Users.ProfileUserViewModel
 
 <div class="card card-primary card-outline">
     <div class="card-body box-profile">
@@ -53,6 +53,19 @@
         </div>
     </div>
 </div>
+<div>
+<div class="form-group text">
+    <div class="button-holder">
+        <a href="/Trip/MyTrips" class="btn btn-primary float-right">My trips</a>
+    </div>
+</div>
+<div class="form-group text">
+    <div class="button-holder">
+        <a href="/User/AddComment" class="btn btn-primary float-left">  Add Comment</a>
+    </div>
+</div>
+</div>
+<br></br>
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">Pets</h3>
@@ -64,27 +77,17 @@
         </div>
     </div>
     <div class="card-body">
-        @for (int i = 0; i<3; i++)
+        @foreach (var pet in @Model.Pets)
         {
             <div class="callout callout-info">
-                <h5>kotka</h5>
+                <h5>@pet.Type</h5>
 
-                <p>vvvvv</p>
+                <p>@pet.Description</p>
             </div>
         }
     </div>
 </div>
 
-<div class="form-group text">
-    <div class="button-holder">
-        <a href="/Trip/MyTrips" class="btn btn-primary btn-block text">My trips</a>
-    </div>
-</div>
-<div class="form-group text">
-    <div class="button-holder">
-        <a href="/User/AddComment" class="btn btn-primary btn-block text">Add Comment</a>
-    </div>
-</div>
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">Comments from passengers</h3>

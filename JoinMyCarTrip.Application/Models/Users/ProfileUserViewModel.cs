@@ -18,6 +18,6 @@ namespace JoinMyCarTrip.Application.Models.Users
         public int? Likes { get; set; }
         public ICollection<CommentViewModel> Comments { get; set; }
 
-        public ICollection<UserPetViewModel> Pet { get; set; }
+        public ICollection<UserPetViewModel> Pets { get; set; }
     }
 }

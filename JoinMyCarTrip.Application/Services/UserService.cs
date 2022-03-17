@@ -17,17 +17,12 @@ namespace JoinMyCarTrip.Application.Services
 
         public ProfileUserViewModel Profile(string userId)
         {
-           var pet = repository.All<Pet>()
-                    .Where(p => p.UserId == userId)
-                    .Select(p => new UserPetViewModel
-                    {
-                        Type = p.Type,
-                        Description = p.Description
-                    }).FirstOrDefault();
+
 
             return repository.All<ApplicationUser>()
                 .Include(x => x.Comments)
                 .ThenInclude(x => x.Author)
+                .ThenInclude(x=>x.Pets)
                 .Where(r => r.Id == userId)
                 .Select(user => new ProfileUserViewModel
                 {
@@ -41,7 +36,7 @@ namespace JoinMyCarTrip.Application.Services
                         Author = comment.Author.FullName,
                         Date = comment.Date
                     }).ToList(),
-                    Pet = user.Pets
+                    Pets = user.Pets
                     .Select(pet=> new UserPetViewModel
                     {
                         Type = pet.Type,
