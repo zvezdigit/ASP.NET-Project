@@ -9,7 +9,7 @@ namespace JoinMyCarTrip.Application.Interfaces
 {
     public interface ICarService
     {
-        Task AddCar(CarViewModel model, string userId);
+        Task AddCar(AddCarViewModel model, string userId);
         AllCarsViewModel GetAllCars(string userId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
+using JoinMyCarTrip.Application.Models.Users;
 using JoinMyCarTrip.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,7 @@ namespace JoinMyCarTrip.Controllers
             userService = _userService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Profile()
         {
             var userId = await GetUserIdAsync();
@@ -27,6 +29,20 @@ namespace JoinMyCarTrip.Controllers
         public IActionResult AddPet()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPet(AddPetViewModel form)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
+
+            var userId = await GetUserIdAsync();
+            await userService.AddPet(form, userId);
+
+            return Redirect("/User/Profile");
         }
 
         public IActionResult AddComment()

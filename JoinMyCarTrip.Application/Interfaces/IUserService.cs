@@ -6,5 +6,7 @@ namespace JoinMyCarTrip.Application.Interfaces
     public interface IUserService
     {
         ProfileUserViewModel Profile(string userId);
+
+        Task AddPet(AddPetViewModel model, string userId);
     }
 }

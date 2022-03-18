@@ -22,7 +22,11 @@ namespace JoinMyCarTrip.Data
 
         public const int PetTypeMaxLenth = 10;
 
+        public const int PetTypeMinLength = 4;
+
         public const int PetDescriptionMaxLength = 200;
+
+        public const int PetDescriptionMinLength = 5;
 
         public const int StartEndPointMaxLength = 150;
 

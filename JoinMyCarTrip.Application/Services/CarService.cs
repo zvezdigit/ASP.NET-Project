@@ -21,7 +21,7 @@ namespace JoinMyCarTrip.Application.Services
         }
 
 
-        public async Task AddCar(CarViewModel model, string userId)
+        public async Task AddCar(AddCarViewModel model, string userId)
         {
             var car = new Car
             {

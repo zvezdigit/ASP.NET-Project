@@ -5,7 +5,7 @@ using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Application.Models.Cars
 {
-    public class CarViewModel
+    public class AddCarViewModel
     {
         [Required]
         [StringLength(StandartMaxLength, ErrorMessage = "Must be between {2} and {1} characters long.", MinimumLength = StandartMinLength)]

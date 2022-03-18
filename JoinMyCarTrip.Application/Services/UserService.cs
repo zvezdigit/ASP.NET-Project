@@ -15,6 +15,19 @@ namespace JoinMyCarTrip.Application.Services
             this.repository = _repository;
         }
 
+        public async Task AddPet(AddPetViewModel model, string userId)
+        {
+            var pet = new Pet
+            {
+                Type = model.Type,
+                Description = model.Description,
+                UserId = userId
+            };
+
+            await repository.AddAsync(pet);
+            await repository.SaveChangesAsync();
+        }
+
         public ProfileUserViewModel Profile(string userId)
         {
 
