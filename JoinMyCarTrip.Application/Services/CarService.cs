@@ -2,6 +2,7 @@
 using JoinMyCarTrip.Application.Models.Cars;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,23 @@ namespace JoinMyCarTrip.Application.Services
 
             await repository.AddAsync(car);
             await repository.SaveChangesAsync();
+        }
+
+        public AllCarsViewModel GetAllCars(string userId)
+        {
+            return repository.All<ApplicationUser>()
+                .Include(x => x.Cars)
+                .Where(r => r.Id == userId)
+                .Select(user => new AllCarsViewModel
+                {
+                    Cars = user.Cars.Select(car => new CarListViewModel
+                    {
+                        BrandAndModel = car.Model,
+                        Year = car.Year,
+                        ImageUrl = car.ImageUrl,
+                    }).ToList()
+
+                }).FirstOrDefault();
         }
     }
 }

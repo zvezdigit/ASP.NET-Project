@@ -10,5 +10,6 @@ namespace JoinMyCarTrip.Application.Interfaces
     public interface ICarService
     {
         Task AddCar(CarViewModel model, string userId);
+        AllCarsViewModel GetAllCars(string userId);
     }
 }
