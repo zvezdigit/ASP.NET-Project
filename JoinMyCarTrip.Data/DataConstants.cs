@@ -30,6 +30,8 @@ namespace JoinMyCarTrip.Data
 
         public const int StartEndPointMaxLength = 150;
 
+        public const int StartEndPointMinLength = 2;
+
         public const int SeatsMin = 2;
 
         public const int SeatsMax = 7;

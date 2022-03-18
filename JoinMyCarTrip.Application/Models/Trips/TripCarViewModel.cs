@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinMyCarTrip.Application.Models.Cars
+namespace JoinMyCarTrip.Application.Models.Trips
 {
     public class TripCarViewModel
     {
