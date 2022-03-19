@@ -27,7 +27,7 @@ namespace JoinMyCarTrip.Data.Entities
         public TripType TripType { get; set; }
 
         [Required]
-        [Range(SeatsMin,SeatsMax)]
+        [Range(SeatsMin, SeatsMax)]
         public int Seats { get; set; }
 
         [Required]

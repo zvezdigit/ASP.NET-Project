@@ -20,20 +20,21 @@ namespace JoinMyCarTrip.Application.Services
 
         public async Task AddComment(AddCommentFormViewModel model, string tripOrganizerId, string userId)
         {
-            var tripOrganizer = repository.All<Trip>()
-                 .FirstOrDefault(t => t.Id == tripOrganizerId);
+            var trip = repository.All<Trip>()
+                .Include(t => t.TripOrganizer)
+                .FirstOrDefault(t => t.TripOrganizerId == tripOrganizerId);
 
-            if (tripOrganizer == null)
+            if (trip == null)
             {
-                throw new ArgumentException("TripOrganizer not found");
+                throw new ArgumentException("Trip with given trip organizer not found");
             }
 
             var comment = new Comment
             {
-                TripOrganizerId = tripOrganizer.Id,
+                TripOrganizerId = trip.TripOrganizerId,
                 Description = model.Description,
                 Date = systemClock.UtcNow.DateTime,
-                IsNiceOrganizer =model.IsNiceTripOrganizer,
+                IsNiceOrganizer = model.IsNiceTripOrganizer,
                 AuthorId = userId
             };
 
@@ -61,7 +62,7 @@ namespace JoinMyCarTrip.Application.Services
             return repository.All<ApplicationUser>()
                 .Include(x => x.Comments)
                 .ThenInclude(x => x.Author)
-                .ThenInclude(x=>x.Pets)
+                .ThenInclude(x => x.Pets)
                 .Where(r => r.Id == userId)
                 .Select(user => new ProfileUserViewModel
                 {
@@ -78,7 +79,7 @@ namespace JoinMyCarTrip.Application.Services
                         Date = comment.Date
                     }).ToList(),
                     Pets = user.Pets
-                    .Select(pet=> new UserPetViewModel
+                    .Select(pet => new UserPetViewModel
                     {
                         Type = pet.Type,
                         Description = pet.Description
