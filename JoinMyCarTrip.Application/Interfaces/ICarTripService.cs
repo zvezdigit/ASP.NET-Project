@@ -10,13 +10,17 @@ namespace JoinMyCarTrip.Application.Interfaces
 {
     public interface ICarTripService
     {
-        Task CreateTrip(CreateTripViewModel model, string userId);
+        Task CreateTrip(CreateTripFormViewModel model, string userId);
         IEnumerable<TripTypeViewModel> GetAllTripTypes();
 
         TripCarsListViewModel GetAllTripCars(string userId);
 
         TripDetailsViewModel GetTripDetails(string tripId);
 
-        // public IEnumerable<TripViewModel> GetAllTrips();
+       IEnumerable<TripListViewModel> GetAllTrips();
+
+        AllTripsViewModel GetMyTrips(string userId);
+
+        Task AddUserToTrip(string tripId, string userId);
     }
 }

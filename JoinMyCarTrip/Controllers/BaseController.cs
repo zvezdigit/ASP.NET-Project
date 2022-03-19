@@ -6,16 +6,16 @@ namespace JoinMyCarTrip.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public BaseController(UserManager<ApplicationUser> userManager)
+        public BaseController(UserManager<ApplicationUser> _userManager)
         {
-            _userManager = userManager;
+            userManager = _userManager;
         }
 
         protected async Task<string> GetUserIdAsync()
         {
-            return (await _userManager.GetUserAsync(User)).Id;
+            return (await userManager.GetUserAsync(User)).Id;
         }
     }
 }

@@ -43,5 +43,7 @@ namespace JoinMyCarTrip.Data
         public const int TripTypeMaxLength = 20;
 
         public const string AdminRole = "SuperAdmin";
+
+        public const string MissingCarUrl = "/img/25-258960_open-creative-commons-images-car-hd.png";
     }
 }

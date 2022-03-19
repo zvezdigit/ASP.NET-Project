@@ -45,7 +45,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateTripViewModel model)
+        public async Task<IActionResult> Create(CreateTripFormViewModel model)
         {
             var userId = await GetUserIdAsync();
 
@@ -62,22 +62,36 @@ namespace JoinMyCarTrip.Controllers
             return Redirect("/Trip/All");
         }
 
+        [HttpGet]
         public IActionResult All()
         {
-            return View();
+            var allTrips = tripService.GetAllTrips();
+
+            return View(allTrips);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string tripId)
+        public async Task<IActionResult> Details([FromQuery]string tripId)
         {
             TripDetailsViewModel tripDetailsViewModel = tripService.GetTripDetails(tripId);
 
             return View(tripDetailsViewModel);
         }
 
-        public IActionResult MyTrips()
+        public async Task<IActionResult> MyTrips()
         {
-            return View();
+            var userId = await GetUserIdAsync();
+            var trips = tripService.GetMyTrips(userId);
+
+            return View(trips);
+        }
+
+        public async Task<IActionResult> AddUserToTrip(string tripId)
+        {
+            var userId = await GetUserIdAsync();
+            await tripService.AddUserToTrip(userId, tripId);
+
+            return Redirect("/Trip/MyTrips");
         }
 
         public IActionResult CreateTripAddCar()

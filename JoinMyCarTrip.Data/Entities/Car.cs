@@ -17,7 +17,7 @@ namespace JoinMyCarTrip.Data.Entities
         [Required]
         public int Year { get; set; }
 
-        [Required]
+    
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; }
 

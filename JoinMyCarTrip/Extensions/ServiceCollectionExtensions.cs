@@ -3,6 +3,7 @@ using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Application.Services;
 using JoinMyCarTrip.Data.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Internal;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -11,10 +12,12 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services
+                .AddSingleton<ISystemClock, SystemClock>()
                 .AddScoped<IRepository, Repository>()
                 .AddScoped<ICarTripService, CarTripService>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<ICarService, CarService>();
+                .AddScoped<ICarService, CarService>()
+                .AddScoped<IMessageService, MessageService>();
 
             return services;
         }

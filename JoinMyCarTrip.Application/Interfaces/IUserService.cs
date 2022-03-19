@@ -7,6 +7,10 @@ namespace JoinMyCarTrip.Application.Interfaces
     {
         ProfileUserViewModel Profile(string userId);
 
-        Task AddPet(AddPetViewModel model, string userId);
+        Task AddPet(AddPetFormViewModel model, string userId);
+
+        Task AddComment(AddCommentFormViewModel model, string tripOrganizerId, string userId);
+
+      
     }
 }

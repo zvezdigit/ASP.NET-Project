@@ -32,7 +32,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPet(AddPetViewModel form)
+        public async Task<IActionResult> AddPet(AddPetFormViewModel form)
         {
             if (!ModelState.IsValid)
             {
@@ -45,11 +45,20 @@ namespace JoinMyCarTrip.Controllers
             return Redirect("/User/Profile");
         }
 
-        public IActionResult AddComment()
+        [HttpPost]
+        public async Task<IActionResult> AddComment(AddCommentFormViewModel form, string tripOrganizerId)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(form);
+            }
+
+            var userId = await GetUserIdAsync();
+            await userService.AddComment(form, tripOrganizerId, userId);
+
+            return Redirect("/Trip/Details?tripId=tripId");
         }
 
-      
+
     }
 }

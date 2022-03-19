@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JoinMyCarTrip.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
 
         public string CarModel { get; set; }
 
-        public string CarImageUrl { get; set; }
+        public string CarImageUrl { get; set; } = DataConstants.MissingCarUrl;
 
         public bool AirConditioner { get; set; }
 
@@ -34,5 +35,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
         public bool PetsAllowed { get; set; }
 
         public bool LuggageAllowed { get; set; }
+
+        public ICollection<TripMessageListViewModel> Messages { get; set; }
     }
 }

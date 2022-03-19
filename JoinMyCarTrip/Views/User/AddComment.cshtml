@@ -1,4 +1,6 @@
-﻿<div class="card card-warning">
+﻿    @model JoinMyCarTrip.Application.Models.Users.AddCommentFormViewModel
+
+<div class="card card-warning">
     <div class="card-header">
         <h3 class="card-title">Add your comment</h3>
     </div>
@@ -6,11 +8,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <form method="post" action="/User/AddComment" role="form">
-
+                <form method="post" action="/User/AddComment?tripOrganizer=1234" role="form">
+                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label>Comment</label>
-                        <textarea class="form-control" rows="3" name="Description" placeholder="Enter your comment..."></textarea>
+                          <label asp-for="Description" class="control-label">Comment </label>
+                        <input asp-for="Description" textarea rows="3" class="form-control" placeholder="Enter your comment...." />
+                        <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="form-group clearfix">
                         <label>Did you like the trip organizer?</label>

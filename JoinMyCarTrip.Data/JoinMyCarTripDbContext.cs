@@ -21,6 +21,7 @@ namespace Data
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<UserTrip> UserTrips { get; set; }
+
         public DbSet<Message> Messages { get; set; }
 
         public DbSet<TripType> TripTypes { get; set; }

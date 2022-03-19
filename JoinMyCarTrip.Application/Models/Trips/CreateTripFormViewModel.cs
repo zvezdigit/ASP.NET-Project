@@ -4,7 +4,7 @@ using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Application.Models.Trips
 {
-    public class CreateTripViewModel
+    public class CreateTripFormViewModel
     {
         [Required]
         [StringLength(StartEndPointMaxLength, ErrorMessage ="{0} length is between {2} and {1}.", MinimumLength = StartEndPointMinLength)]

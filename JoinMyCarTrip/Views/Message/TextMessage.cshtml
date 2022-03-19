@@ -1,18 +1,19 @@
-﻿     <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Message</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-               <form method="post" action="/Message/TextMessage">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="text">Text</label>
-                    <textarea rows ="4" class="form-control" name="Text" placeholder="Enter message...."></textarea>
-                  author: Alex
-                  </div>
-                  <button type="submit" class="btn btn-primary">Send</button>
-                </div>
-              </form>
+﻿    @model JoinMyCarTrip.Application.Models.Messages.TextMessageFormViewModel
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Message</h3>
+    </div>
+    <form method="post" action="/Message/TextMessage?tripId=@ViewBag.TripId">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label">Text </label>
+                <input asp-for="Text" textarea rows="4" class="form-control" placeholder="Enter message...." />
+                <span asp-validation-for="Text" class="text-danger"></span>
             </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
 

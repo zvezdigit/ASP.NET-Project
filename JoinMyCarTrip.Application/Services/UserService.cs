@@ -15,7 +15,30 @@ namespace JoinMyCarTrip.Application.Services
             this.repository = _repository;
         }
 
-        public async Task AddPet(AddPetViewModel model, string userId)
+        public async Task AddComment(AddCommentFormViewModel model, string tripOrganizerId, string userId)
+        {
+            var tripOrganizer = repository.All<Trip>()
+                 .FirstOrDefault(t => t.Id == tripOrganizerId);
+
+            if (tripOrganizer == null)
+            {
+                throw new ArgumentException("TripOrganizer not found");
+            }
+
+            var comment = new Comment
+            {
+                TripOrganizerId = tripOrganizer.Id,
+                Description = model.Description,
+                Date = model.Date,
+                AuthorId = userId
+
+            };
+
+            await repository.AddAsync(comment);
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task AddPet(AddPetFormViewModel model, string userId)
         {
             var pet = new Pet
             {
@@ -39,6 +62,8 @@ namespace JoinMyCarTrip.Application.Services
                 .Where(r => r.Id == userId)
                 .Select(user => new ProfileUserViewModel
                 {
+                    UserId = userId,
+                    GravatarLink = Utils.Gravtar.GetUrl(user.Email),
                     FullName = user.FullName,
                     Email = user.Email,
                     Phone = user.PhoneNumber,

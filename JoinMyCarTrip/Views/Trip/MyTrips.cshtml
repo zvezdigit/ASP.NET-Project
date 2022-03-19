@@ -1,4 +1,7 @@
-﻿<div class="card">
+﻿@using JoinMyCarTrip.Application.Models.Trips
+@model AllTripsViewModel
+
+<div class="card">
     <div class="card-header">
         <h3 class="card-title">My Trips</h3>
 
@@ -26,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < 7; i++)
+                @foreach (var trip in @Model.Trips)
                 {
                     <tr>
                         <td>
@@ -34,45 +37,43 @@
                         </td>
                         <td>
                             <a>
-                               Varna-Sofia
+                               @trip.StartPoint-@trip.EndPoint
                             </a>
                             <br />
                             <small>
-                                Departure time:09/08/2022 10:00
+                                Departure time:@trip.DepartureTime
                             </small>
                         </td>
                         <td>
+                            @foreach(var passenger in @trip.Passengers)
+                            {
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="~/img/avatar.png">
+                                    <img alt="Avatar" class="table-avatar" src="@passenger.GravatarLink">
                                 </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-                                </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="~/img/avatar3.png">
-                                </li>
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="~/img/avatar04.png">
-                                </li>
+                               
                             </ul>
+                            }
                         </td>
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="/Trip/Details?tripId=123">
+                            <a class="btn btn-primary btn-sm" href="/Trip/Details?tripId=@trip.TripId">
                                 <i class="fas fa-folder">
                                 </i>
                                 Details
                             </a>
-                            <a class="btn btn-info btn-sm" href="/Message/TextMessage">
+                            <a class="btn btn-info btn-sm" href="/Message/TextMessage?tripId=@trip.TripId">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Send message
                             </a>
-                              <a class="btn btn-success btn-sm" href="/User/AddComment?tripId=123">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Add Comment
-                            </a>
+                            @if (trip.UserId != @trip.TripOrganizerId)
+                            {
+                                <a class="btn btn-success btn-sm" href="/User/AddComment?tripOrganizerId=@trip.TripOrganizerId">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Add Comment
+                                </a>
+                            }
                         </td>
                     </tr>
                 }

@@ -1,4 +1,4 @@
-﻿@model JoinMyCarTrip.Application.Models.TripViewModel
+﻿@model JoinMyCarTrip.Application.Models.Trips.TripDetailsViewModel
 
 <div class="card card-primary">
     <div class="card-header">
@@ -12,54 +12,53 @@
     </div>
     <div class="card-body">
         <div class="form-group">
-            <img width="500" src="https://carwow-uk-wp-3.imgix.net/Volvo-XC40-white-scaled.jpg?auto=format&cs=tinysrgb&fit=clip&ixlib=rb-1.1.0&q=10&w=460" />
+            <img width="500" src="@Model.CarImageUrl" />
+            @*<img width="500" src="@Model.CarImageUrl"/>*@
         </div>
         <div class="form-group">
-            <label><a href="/User/Profile/@Model.TripOrganizerId">Trip Organizer</a></label>
-            <input type="text" class="form-control" value="Alex" readonly />
+            <label><a href="/User/Profile?tripOrganizerId=@Model.TripOrganizerId">Trip Organizer</a></label>
+            <input asp-for="TripOrganizer" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Start Point</label>
-            <input type="text" class="form-control" value="Varna" readonly />
+            <input asp-for="@Model.StartPoint" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>End Point</label>
-            <input type="text" class="form-control" value="Sofia" readonly />
+            <input asp-for="@Model.EndPoint" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Departure Time</label>
-            <input type="text" class="form-control" value="2/03/2022 10:00" readonly />
+            <input asp-for="@Model.DepartureTime" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Seats</label>
-            <input type="text" class="form-control" value="5" readonly />
+            <input asp-for="@Model.Seats" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Trip type</label>
-            <input type="text" class="form-control" value="weekly" readonly />
+            <input asp-for="@Model.TripType" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Car</label>
-            <input type="text" class="form-control" value="Model" readonly />
+            <input asp-for="@Model.CarModel" class="form-control" readonly />
         </div>
         <div class="form-group">
             <label>Car Details</label>
             <div class="form-check">
-                @*<input type="checkbox" name="AirConditioner" class="form-check-input" readonly />*@
-
-                <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" onclick="return false;" />
+                <input asp-for="@Model.AirConditioner" class="form-check-input" onclick="return false;" />
                 <label class="form-check-label">Air Conditioner</label>
             </div>
             <div class="form-check">
-                <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" onclick="return false;" />
+                <input asp-for="@Model.Smoking" class="form-check-input" onclick="return false;" />
                 <label class="form-check-label">Smoking</label>
             </div>
             <div class="form-check">
-                <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" onclick="return false;" />
+                <input asp-for="@Model.LuggageAllowed" class="form-check-input" onclick="return false;" />
                 <label class="form-check-label">Luggage</label>
             </div>
             <div class="form-check">
-                <input asp-for="@Model.AirConditioner" name="AirConditioner" class="form-check-input" onclick="return false;" />
+                <input asp-for="@Model.PetsAllowed" class="form-check-input" onclick="return false;" />
                 <label class="form-check-label">Pets Allowed</label>
             </div>
         </div>
@@ -77,13 +76,13 @@
         </div>
     </div>
     <div class="card-body">
-        @for (int i = 0; i < 5; i++)
+        @foreach (var message in @Model.Messages)
         {
             <div class="callout callout-info">
-                <h5>Author</h5>
+                <h5>@message.Author</h5>
 
-                <p>bla bla bla.</p>
-                 <small>01/03/2022</small>
+                <p>@message.Text</p>
+                 <small>@message.Date</small>
             </div>
         }
     </div>
@@ -91,7 +90,7 @@
 
 <div class="form-group text-center">
     <div class="button-holder">
-        <a href="/Trip/AddUserToTrip?tripId=5Id" class="btn btn-primary btn-block text-uppercase">Join</a>
+        <a href="/Trip/AddUserToTrip?tripId=@Model.TripId" class="btn btn-primary btn-block text-uppercase">Join</a>
     </div>
 </div>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JoinMyCarTrip.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,6 @@ namespace JoinMyCarTrip.Application.Models.Cars
 
         public int Year { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = DataConstants.MissingCarUrl;
     }
 }

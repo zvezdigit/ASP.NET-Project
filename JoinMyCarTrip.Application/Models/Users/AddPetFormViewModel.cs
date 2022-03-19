@@ -6,7 +6,7 @@ using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Application.Models.Users
 {
-    public class AddPetViewModel
+    public class AddPetFormViewModel
     {
         [Required]
        

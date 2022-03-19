@@ -23,7 +23,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCar(AddCarViewModel form)
+        public async Task<IActionResult> AddCar(AddCarFormViewModel form)
         {
             if (!ModelState.IsValid)
             {
