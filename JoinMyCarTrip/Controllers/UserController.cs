@@ -17,8 +17,8 @@ namespace JoinMyCarTrip.Controllers
             userService = _userService;
         }
 
-        [HttpGet]
-        public IActionResult Profile([FromQuery] string userId)
+        [HttpGet("/User/Profile/{userId}")]
+        public IActionResult Profile(string userId)
         {
             var profile = userService.Profile(userId);
 
@@ -65,13 +65,14 @@ namespace JoinMyCarTrip.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.TripOrganizerId = tripOrganizerId;
                 return View(form);
             }
 
             var userId = await GetUserIdAsync();
             await userService.AddComment(form, tripOrganizerId, userId);
 
-            return Redirect($"/User/Profile?userId={tripOrganizerId}");
+            return Redirect($"/User/Profile/{tripOrganizerId}");
         }
 
 

@@ -124,8 +124,8 @@ namespace JoinMyCarTrip.Application.Services
         public AllTripsViewModel GetMyTrips(string userId)
         {
             return repository.All<ApplicationUser>()
-               .Include(x => x.UserTrips)
-               .Where(r => r.Id == userId)
+               .Include(user => user.UserTrips)
+               .Where(user => user.Id == userId)
                .Select(user => new AllTripsViewModel
                {
                    Trips = user.UserTrips.Select(trip => new TripListViewModel
