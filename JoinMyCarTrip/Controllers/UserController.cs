@@ -18,6 +18,14 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
+        public IActionResult Profile([FromQuery] string userId)
+        {
+            var profile = userService.Profile(userId);
+
+            return View(profile);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Profile()
         {
             var userId = await GetUserIdAsync();
@@ -45,8 +53,15 @@ namespace JoinMyCarTrip.Controllers
             return Redirect("/User/Profile");
         }
 
+        [HttpGet]
+        public IActionResult AddComment([FromQuery]string tripOrganizerId)
+        {
+            ViewBag.TripOrganizerId = tripOrganizerId;
+            return View();
+        }
+
         [HttpPost]
-        public async Task<IActionResult> AddComment(AddCommentFormViewModel form, string tripOrganizerId)
+        public async Task<IActionResult> AddComment(AddCommentFormViewModel form, [FromQuery] string tripOrganizerId)
         {
             if (!ModelState.IsValid)
             {
@@ -56,7 +71,7 @@ namespace JoinMyCarTrip.Controllers
             var userId = await GetUserIdAsync();
             await userService.AddComment(form, tripOrganizerId, userId);
 
-            return Redirect("/Trip/Details?tripId=tripId");
+            return Redirect($"/User/Profile?userId={tripOrganizerId}");
         }
 
 

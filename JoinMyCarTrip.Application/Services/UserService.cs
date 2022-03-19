@@ -3,16 +3,19 @@ using JoinMyCarTrip.Application.Models.Users;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Internal;
 
 namespace JoinMyCarTrip.Application.Services
 {
     public class UserService : IUserService
     {
         private readonly IRepository repository;
+        private readonly ISystemClock systemClock;
 
-        public UserService(IRepository _repository)
+        public UserService(IRepository _repository, ISystemClock _systemClock)
         {
-            this.repository = _repository;
+            repository = _repository;
+            systemClock = _systemClock;
         }
 
         public async Task AddComment(AddCommentFormViewModel model, string tripOrganizerId, string userId)
@@ -29,9 +32,9 @@ namespace JoinMyCarTrip.Application.Services
             {
                 TripOrganizerId = tripOrganizer.Id,
                 Description = model.Description,
-                Date = model.Date,
+                Date = systemClock.UtcNow.DateTime,
+                IsNiceOrganizer =model.IsNiceTripOrganizer,
                 AuthorId = userId
-
             };
 
             await repository.AddAsync(comment);

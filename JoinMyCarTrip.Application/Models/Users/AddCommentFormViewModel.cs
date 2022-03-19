@@ -13,8 +13,5 @@ namespace JoinMyCarTrip.Application.Models.Users
 
         public bool IsNiceTripOrganizer { get; set; }
 
-        public DateTime Date { get; set; } = DateTime.Now;
-
-        public string AuthorId { get; set; }
     }
 }

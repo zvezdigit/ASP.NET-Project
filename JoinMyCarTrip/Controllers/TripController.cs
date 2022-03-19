@@ -19,12 +19,7 @@ namespace JoinMyCarTrip.Controllers
             this.tripService = _tripService;
         }
 
-        //public IActionResult Index()
-        //{
-        //    var trips = tripService.GetAllTrips();
-
-        //    return View(trips);
-        //}
+      
 
         public async Task<IActionResult> Create()
         {
@@ -71,7 +66,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details([FromQuery]string tripId)
+        public IActionResult Details([FromQuery]string tripId)
         {
             TripDetailsViewModel tripDetailsViewModel = tripService.GetTripDetails(tripId);
 
@@ -86,10 +81,10 @@ namespace JoinMyCarTrip.Controllers
             return View(trips);
         }
 
-        public async Task<IActionResult> AddUserToTrip(string tripId)
+        public async Task<IActionResult> JoinTrip([FromQuery]string tripId)
         {
             var userId = await GetUserIdAsync();
-            await tripService.AddUserToTrip(userId, tripId);
+            await tripService.AddUserToTrip(tripId, userId);
 
             return Redirect("/Trip/MyTrips");
         }

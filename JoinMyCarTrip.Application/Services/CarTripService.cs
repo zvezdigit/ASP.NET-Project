@@ -170,7 +170,7 @@ namespace JoinMyCarTrip.Application.Services
                 UserId = userId
             };
 
-            if (trip.UserTrips.Contains(userTrip))
+            if (UserAlreadyJoinedTrip(trip, userId))
             {
                 throw new ArgumentException("You have already joined to this trip.");
             }
@@ -188,7 +188,19 @@ namespace JoinMyCarTrip.Application.Services
 
         }
 
-        
+        private bool UserAlreadyJoinedTrip(Trip trip, string userId)
+        {
+            foreach(var t in trip.UserTrips)
+            {
+                if(t.UserId == userId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
     }
 
 }

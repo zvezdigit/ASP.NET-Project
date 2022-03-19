@@ -66,7 +66,7 @@
                                 </i>
                                 Send message
                             </a>
-                            @if (trip.UserId != @trip.TripOrganizerId)
+                            @if (trip.UserId != trip.TripOrganizerId)
                             {
                                 <a class="btn btn-success btn-sm" href="/User/AddComment?tripOrganizerId=@trip.TripOrganizerId">
                                     <i class="fas fa-pencil-alt">
