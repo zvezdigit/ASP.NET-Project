@@ -16,7 +16,6 @@ namespace JoinMyCarTrip.Application.Services
         }
         public async Task CreateTrip(CreateTripViewModel model, string userId)
         {
-
             var trip = new Trip()
             {
                 StartPoint = model.StartPoint,
@@ -24,7 +23,7 @@ namespace JoinMyCarTrip.Application.Services
                 Seats = model.Seats,
                 TripTypeId = model.TripTypeId,
                 TripOrganizerId = userId,
-                DepartureTime = model.DepartureTime,
+                DepartureTime = model.DepartureTime.Value,
                 CarId = model.CarId
             };
 
@@ -75,6 +74,7 @@ namespace JoinMyCarTrip.Application.Services
                .Where(t => t.Id == tripId)
                .Select(t => new TripDetailsViewModel()
                {
+                   TripId = t.Id,
                    TripOrganizer = t.TripOrganizer.FullName,
                    TripOrganizerId = t.TripOrganizerId,
                    StartPoint = t.StartPoint,

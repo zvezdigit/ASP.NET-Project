@@ -15,7 +15,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
         public string EndPoint { get; set; }
 
         [Required]
-        public DateTime DepartureTime { get; set; }
+        public DateTime? DepartureTime { get; set; }
 
         [Required]
         public string TripTypeId { get; set; }

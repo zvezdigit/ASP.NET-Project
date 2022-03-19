@@ -28,42 +28,36 @@ namespace JoinMyCarTrip.Controllers
 
         public async Task<IActionResult> Create()
         {
-
-            //var cars = new List<TripCarViewModel> {
-            //    new TripCarViewModel
-            //    {
-            //        Model = "Audi A6", CarId = "123"
-            //    },
-            //    new TripCarViewModel
-            //    {
-            //        Model = "BMW X5", CarId = "567567"
-            //    },
-            //};
             var userId = await GetUserIdAsync();
             var cars = tripService.GetAllTripCars(userId).MyCars.ToList();
-            var tripTypes = tripService.GetAllTripTypes().ToList();
 
-            if (cars.Count==0)
+            if (cars.Count == 0)
             {
                 return Redirect("/Trip/CreateTripAddCar");
             }
-            return View(new { Cars = cars, TripTypes = tripTypes });
+
+            var tripTypes = tripService.GetAllTripTypes().ToList();
+
+            ViewBag.TripTypes = tripTypes;
+            ViewBag.Cars = cars;
+                        
+            return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateTripViewModel model)
         {
+            var userId = await GetUserIdAsync();
 
-          
             if (!ModelState.IsValid)
             {
-               
+                ViewBag.Cars = tripService.GetAllTripCars(userId).MyCars.ToList();
+                ViewBag.TripTypes = tripService.GetAllTripTypes().ToList();
+
                 return View(model);
             }
 
-            var userId = await GetUserIdAsync();
             await tripService.CreateTrip(model, userId);
-
 
             return Redirect("/Trip/All");
         }
@@ -73,9 +67,12 @@ namespace JoinMyCarTrip.Controllers
             return View();
         }
 
-        public IActionResult Details()
+        [HttpGet]
+        public async Task<IActionResult> Details(string tripId)
         {
-            return View(new TripViewModel() { AirConditioner = true }); //to be removed TripViewModel
+            TripDetailsViewModel tripDetailsViewModel = tripService.GetTripDetails(tripId);
+
+            return View(tripDetailsViewModel);
         }
 
         public IActionResult MyTrips()
@@ -87,6 +84,5 @@ namespace JoinMyCarTrip.Controllers
         {
             return View();
         }
-
     }
 }

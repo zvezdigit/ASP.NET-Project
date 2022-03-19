@@ -1,5 +1,4 @@
-﻿@using JoinMyCarTrip.Application.Models.Cars
-@using JoinMyCarTrip.Application.Models.Trips
+﻿@using JoinMyCarTrip.Application.Models.Trips
 @model JoinMyCarTrip.Application.Models.Trips.CreateTripViewModel
 
 <!-- Main content -->
@@ -21,51 +20,39 @@
                         </div>
                     </div>
                     <div class="card-body">
-                          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="@Model.StartPoint" class="control-label">Start Point </label>
-                        <input asp-for="@Model.StartPoint" class="form-control" />
-                        <span asp-validation-for="StartPoint" class="text-danger"></span> 
+                            <label asp-for="StartPoint" class="control-label">Start Point </label>
+                            <input asp-for="StartPoint" class="form-control" />
+                            <span asp-validation-for="StartPoint" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                             <label asp-for="@Model.EndPoint" class="control-label">End Point</label>
-                        <input asp-for="@Model.EndPoint" class="form-control" />
-                        <span asp-validation-for="EndPoint" class="text-danger"></span> 
+                            <label asp-for="EndPoint" class="control-label">End Point</label>
+                            <input asp-for="EndPoint" class="form-control" />
+                            <span asp-validation-for="EndPoint" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                             <label asp-for="@Model.DepartureTime" class="control-label">Departure Time </label>
-                        <input asp-for="@Model.DepartureTime" class="form-control" placeholder="dd.MM.yyyy HH:mm />
-                        <span asp-validation-for="DepartureTime" class="text-danger"></span> 
+                            <label asp-for="DepartureTime" class="control-label">Departure Time </label>
+                            <input asp-for="DepartureTime" min="@DateTime.Now" class="form-control" placeholder="dd/MM/yyyy HH:mm    />
+                            <span asp-validation-for="DepartureTime" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Car">Car</label>
-                            <select class="form-control custom-select" name="CarId">
-                                <option selected disabled>Select one</option>
-
-                                @foreach(var car in @Model.Cars)
-                                {@
-                                    <option value="@car.CarId">@car.Model</option>
-                                }
-                                
+                            <label asp-for="CarId">Car</label>
+                            <select asp-for="CarId" asp-items="@(new SelectList(ViewBag.Cars, nameof(TripCarViewModel.CarId), nameof(TripCarViewModel.Model)))" class="form-control custom-select">
+                                <option>Please select one</option>
                             </select>
-                                   <span asp-validation-for="Car" class="text-danger"></span>
+                            <span asp-validation-for="CarId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="seats">Seats</label>
                             <input min="2" max="7" type="number" name="Seats" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label asp-for="TripType">Trip Type</label>
-                            <select class="form-control custom-select" name="TripType">
-                                <option selected disabled>Select one</option>
-
-                                @foreach(var tripType in @Model.TripTypes)
-                                {
-                                    <option value="@tripType.Id">@tripType.Type</option>
-                                        
-                                }
+                            <label asp-for="TripTypeId">Trip Type</label>
+                             <select asp-for="TripTypeId" asp-items="@(new SelectList(ViewBag.TripTypes, nameof(TripTypeViewModel.Id), nameof(TripTypeViewModel.Type)))" class="form-control custom-select">
+                                <option>Please select one</option>
                             </select>
-                                   <span asp-validation-for="TripType" class="text-danger"></span>
+                            <span asp-validation-for="TripTypeId" class="text-danger"></span>
                         </div>
                         <!-- /.card-body -->
                     </div>
