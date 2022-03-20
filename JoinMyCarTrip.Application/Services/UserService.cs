@@ -1,7 +1,9 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
+using JoinMyCarTrip.Application.Models.Trips;
 using JoinMyCarTrip.Application.Models.Users;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Internal;
 
@@ -53,6 +55,24 @@ namespace JoinMyCarTrip.Application.Services
 
             await repository.AddAsync(pet);
             await repository.SaveChangesAsync();
+        }
+
+        public async Task<ApplicationUser> GetUserById(string id)
+        {
+            return await repository.GetByIdAsync<ApplicationUser>(id);
+        }
+
+        public async Task<IEnumerable<UserTripViewModel>> GetUsers()
+        {
+            return await repository.All<ApplicationUser>()
+                .Select(u => new UserTripViewModel()
+                {
+                    UserId = u.Id,
+                    FullName=u.FullName,
+                    Email = u.Email,
+                    GravatarLink= Utils.Gravtar.GetUrl(u.Email),
+                })
+                .ToListAsync();
         }
 
         public ProfileUserViewModel Profile(string userId)

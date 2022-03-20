@@ -1,13 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JoinMyCarTrip.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JoinMyCarTrip.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminController:Controller
     {
-        public IActionResult Users()
+        private readonly IUserService userService;
+
+        public AdminController(IUserService _userService)
         {
-            return View();
+            userService = _userService;
+        }
+        public async Task<IActionResult> Users()
+        {
+            var users = await userService.GetUsers();
+
+            return View(users);
         }
 
 

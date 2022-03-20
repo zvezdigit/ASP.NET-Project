@@ -14,5 +14,7 @@ namespace JoinMyCarTrip.Application.Models.Trips
 
         public string FullName { get; set; }
 
+        public string Email { get; set; }
+
     }
 }
