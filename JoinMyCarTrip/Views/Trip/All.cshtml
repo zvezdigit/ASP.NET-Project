@@ -45,14 +45,16 @@
                             </small>
                         </td>
                         <td>
-                            @foreach(var passenger in trip.Passengers)
-                            {
                             <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img alt="Avatar" class="table-avatar" src="@passenger.GravatarLink">
-                                </li>
+                                @foreach (var passenger in trip.Passengers)
+                                {
+                                    <li class="list-inline-item">
+                                        <a href="/User/Profile/@passenger.UserId">
+                                            <img alt="Avatar" class="table-avatar" src="@passenger.GravatarLink" data-toggle="tooltip" data-placement="right" title="@passenger.FullName">
+                                        </a>
+                                    </li>
+                                }
                             </ul>
-                            }
                         </td>
                         <td class="project-actions text-right">
                             <a class="btn btn-primary btn-sm" href="/Trip/Details?tripId=@trip.TripId">
@@ -65,7 +67,7 @@
                                 </i>
                                 Send message
                             </a>
-                          
+
                         </td>
 
                     </tr>

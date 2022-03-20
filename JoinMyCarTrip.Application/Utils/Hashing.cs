@@ -13,8 +13,8 @@ namespace JoinMyCarTrip.Application.Utils
         {
             using (var md5 = MD5.Create())
             {
-                var result = md5.ComputeHash(Encoding.ASCII.GetBytes(input));
-                return Encoding.ASCII.GetString(result);
+                var hashBytes = md5.ComputeHash(Encoding.ASCII.GetBytes(input));
+                return Convert.ToHexString(hashBytes).ToLowerInvariant();
             }
         }
     }

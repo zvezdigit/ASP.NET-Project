@@ -33,7 +33,7 @@ namespace JoinMyCarTrip.Controllers
                 ApplicationUser user = await _userManager.GetUserAsync(User);
                 if (await _userManager.IsInRoleAsync(user, AdminRole))
                 {
-                    return RedirectToAction("Users", "Admin", new { area = "Admin" });
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
             }
 
