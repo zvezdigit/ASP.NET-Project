@@ -83,8 +83,17 @@ namespace JoinMyCarTrip.Controllers
 
         public async Task<IActionResult> JoinTrip([FromQuery]string tripId)
         {
-            var userId = await GetUserIdAsync();
-            await tripService.AddUserToTrip(tripId, userId);
+            try
+            {
+                var userId = await GetUserIdAsync();
+                await tripService.AddUserToTrip(tripId, userId);
+            }
+            catch (Exception e)
+            {
+
+                return View("JoinError", new { ErrorMessage = e.Message });
+            }
+           
 
             return Redirect("/Trip/MyTrips");
         }

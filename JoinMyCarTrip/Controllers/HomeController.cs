@@ -31,8 +31,7 @@ namespace JoinMyCarTrip.Controllers
             if (_signInManager.IsSignedIn(User))
             {
                 ApplicationUser user = await _userManager.GetUserAsync(User);
-                if (await _userManager.IsInRoleAsync(user, SuperAdminRole) ||
-                    await _userManager.IsInRoleAsync(user, AdminRole))
+                if (await IsAdminAsync(user))
                 {
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
@@ -50,6 +49,12 @@ namespace JoinMyCarTrip.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private async Task<bool> IsAdminAsync(ApplicationUser user)
+        {
+            return await _userManager.IsInRoleAsync(user, SuperAdminRole) ||
+                    await _userManager.IsInRoleAsync(user, AdminRole);
         }
     }
 }
