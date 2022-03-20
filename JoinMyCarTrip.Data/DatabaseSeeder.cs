@@ -12,6 +12,8 @@ namespace JoinMyCarTrip.Data
             modelBuilder.SeedTripTypes();
 
             modelBuilder.SeedSuperAdmin();
+
+            modelBuilder.SeedRole();
         }
 
         private static void SeedSuperAdmin(this ModelBuilder modelBuilder)
@@ -21,11 +23,13 @@ namespace JoinMyCarTrip.Data
 
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
             {
-                Name = AdminRole,
-                NormalizedName = AdminRole.ToUpper(),
+                Name = SuperAdminRole,
+                NormalizedName = SuperAdminRole.ToUpper(),
                 Id = roleId,
                 ConcurrencyStamp = "1"
             });
+
+
 
             modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
             {
@@ -42,6 +46,19 @@ namespace JoinMyCarTrip.Data
             {
                 RoleId = roleId,
                 UserId = adminId
+            });
+        }
+
+        private static void SeedRole(this ModelBuilder modelBuilder)
+        {
+            var roleId = "687cd1fa-ba03-4f05-b341-3a0bb817b16e";
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Name = AdminRole,
+                NormalizedName = AdminRole.ToUpper(),
+                Id = roleId,
+                ConcurrencyStamp = "1"
             });
         }
 
