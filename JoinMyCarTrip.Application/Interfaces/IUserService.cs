@@ -15,6 +15,8 @@ namespace JoinMyCarTrip.Application.Interfaces
 
         Task<IEnumerable<UserTripViewModel>> GetUsers();
 
+        UserRoleModel GetUserRole(string roleId);
+
 
     }
 }

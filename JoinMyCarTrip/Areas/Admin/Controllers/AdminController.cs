@@ -68,9 +68,19 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
         public async Task<IActionResult> Roles (UserRoleViewModel model)
         {
             var user = await userService.GetUserById(model.UserId);
-            await userManager.AddToRoleAsync(user, model.RoleId);
 
-            return Ok(model);
+            var roleModel = userService.GetUserRole(model.RoleId);
+
+
+            if (!(await userManager.IsInRoleAsync(user, roleModel.Name)))
+            {
+               await userManager.AddToRoleAsync(user, roleModel.Name);
+                return Redirect("/Admin/Admin/Users");
+            }
+
+
+            return Redirect("Admin/Roles");
+          
         }
     }
 }
