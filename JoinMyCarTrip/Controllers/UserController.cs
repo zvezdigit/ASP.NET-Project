@@ -11,7 +11,8 @@ namespace JoinMyCarTrip.Controllers
     {
         private readonly IUserService userService;
         
-        public UserController(IUserService _userService, UserManager<ApplicationUser> userManager) 
+        public UserController(IUserService _userService
+            ,UserManager<ApplicationUser> userManager) 
             : base(userManager)
         {
             userService = _userService;
@@ -61,7 +62,8 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddComment(AddCommentFormViewModel form, [FromQuery] string tripOrganizerId)
+        public async Task<IActionResult> AddComment(AddCommentFormViewModel form 
+            ,[FromQuery] string tripOrganizerId)
         {
             if (!ModelState.IsValid)
             {

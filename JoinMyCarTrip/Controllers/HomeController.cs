@@ -1,4 +1,5 @@
 ﻿using JoinMyCarTrip.Application.Constants;
+using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,27 +11,29 @@ namespace JoinMyCarTrip.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private SignInManager<ApplicationUser> _signInManager;
-        private UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<HomeController> logger;
+        private SignInManager<ApplicationUser> signInManager;
+        private UserManager<ApplicationUser> userManager;
+
 
         public HomeController(
-            ILogger<HomeController> logger, 
-            SignInManager<ApplicationUser> signInManager, 
-            UserManager<ApplicationUser> userManager)
+            ILogger<HomeController> _logger, 
+            SignInManager<ApplicationUser> _signInManager, 
+            UserManager<ApplicationUser> _userManager) 
         {
-            _logger = logger;
-            _signInManager = signInManager;
-            _userManager = userManager;
+            logger = _logger;
+            signInManager = _signInManager;
+            userManager = _userManager;
         }
 
         public async Task<IActionResult> Index()
         {
             ViewData[MessageConstant.SuccessMessage] = "Welcome";
 
-            if (_signInManager.IsSignedIn(User))
+            if (signInManager.IsSignedIn(User))
             {
-                ApplicationUser user = await _userManager.GetUserAsync(User);
+                ApplicationUser user = await userManager.GetUserAsync(User);
+
                 if (await IsAdminAsync(user))
                 {
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -53,8 +56,8 @@ namespace JoinMyCarTrip.Controllers
 
         private async Task<bool> IsAdminAsync(ApplicationUser user)
         {
-            return await _userManager.IsInRoleAsync(user, SuperAdminRole) ||
-                    await _userManager.IsInRoleAsync(user, AdminRole);
+            return await userManager.IsInRoleAsync(user, SuperAdminRole) ||
+                    await userManager.IsInRoleAsync(user, AdminRole);
         }
     }
 }

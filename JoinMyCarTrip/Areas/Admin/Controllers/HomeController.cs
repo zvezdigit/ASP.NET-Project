@@ -2,8 +2,8 @@
 
 namespace JoinMyCarTrip.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class HomeController: Controller
+
+    public class HomeController: BaseController
     {
         [HttpGet]
         public IActionResult Index()

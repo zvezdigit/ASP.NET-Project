@@ -13,13 +13,12 @@ namespace JoinMyCarTrip.Controllers
     {
         private readonly ICarTripService tripService;
 
-        public TripController(ICarTripService _tripService, UserManager<ApplicationUser> userManager)
+        public TripController(ICarTripService _tripService
+            ,UserManager<ApplicationUser> userManager)
             : base(userManager)
         {
             this.tripService = _tripService;
         }
-
-      
 
         public async Task<IActionResult> Create()
         {

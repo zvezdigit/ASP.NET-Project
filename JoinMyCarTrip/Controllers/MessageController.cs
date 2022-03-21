@@ -10,7 +10,8 @@ namespace JoinMyCarTrip.Controllers
     {
         private readonly IMessageService messageService;
 
-        public MessageController(IMessageService _messageService, UserManager<ApplicationUser> userManager)
+        public MessageController(IMessageService _messageService 
+            ,UserManager<ApplicationUser> userManager)
             :base(userManager)
         {
             messageService = _messageService;

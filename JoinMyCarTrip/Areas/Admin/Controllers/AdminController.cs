@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JoinMyCarTrip.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class AdminController:Controller
+
+    public class AdminController:BaseController
     {
         private readonly IUserService userService;
 
