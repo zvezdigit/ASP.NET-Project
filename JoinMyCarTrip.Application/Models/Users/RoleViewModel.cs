@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoinMyCarTrip.Application.Models.Users
 {
-    public class UserRoleModel
+    public class RoleViewModel
     {
         public string Id { get; set; }
 

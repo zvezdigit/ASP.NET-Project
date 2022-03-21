@@ -12,7 +12,6 @@ namespace JoinMyCarTrip.Application.Models.Users
 
         public string FullName { get; set; }
 
-        public string RoleId { get; set; }
-
+        public string[] Roles { get; set; } = Array.Empty<string>();
     }
 }

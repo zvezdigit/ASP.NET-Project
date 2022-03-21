@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace JoinMyCarTrip.Areas.Admin.Controllers
 {
 
-    public class AdminController:BaseController
+    public class AdminController : BaseController
     {
         private readonly IUserService userService;
 
@@ -19,7 +19,7 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
         public AdminController(IUserService _userService,
             RoleManager<IdentityRole> _roleManager,
             UserManager<ApplicationUser> _userManager)
-            
+
         {
             userService = _userService;
             roleManager = _roleManager;
@@ -45,6 +45,9 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
         public async Task<IActionResult> Roles(string id)
         {
             var user = await userService.GetUserById(id);
+
+            ViewBag.UserRoles = await userManager.GetRolesAsync(user);
+
             var model = new UserRoleViewModel()
             {
                 UserId = user.Id,
@@ -57,7 +60,7 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
                 .Select(r => new SelectListItem()
                 {
                     Text = r.Name,
-                    Value = r.Id,
+                    Value = r.Name,
                     Selected = userManager.IsInRoleAsync(user, r.Name).Result
                 }).ToList();
 
@@ -65,22 +68,32 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Roles (UserRoleViewModel model)
+        public async Task<IActionResult> Roles(UserRoleViewModel model)
         {
             var user = await userService.GetUserById(model.UserId);
 
-            var roleModel = userService.GetUserRole(model.RoleId);
+            var userRoles = await userManager.GetRolesAsync(user);
 
-
-            if (!(await userManager.IsInRoleAsync(user, roleModel.Name)))
+            foreach (var userRole in userRoles)
             {
-               await userManager.AddToRoleAsync(user, roleModel.Name);
-                return Redirect("/Admin/Admin/Users");
+                if (!model.Roles.Contains(userRole))
+                {
+                    await userManager.RemoveFromRoleAsync(user, userRole);
+                }
             }
 
+            foreach (var role in model.Roles)
+            {
+                if (!(await userManager.IsInRoleAsync(user, role)))
+                {
+                    await userManager.AddToRoleAsync(user, role);
+                }
+            }
 
-            return Redirect("Admin/Roles");
-          
+            return Redirect("/Admin/Admin/Users");
+
         }
+
+
     }
 }

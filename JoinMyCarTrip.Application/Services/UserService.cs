@@ -62,17 +62,6 @@ namespace JoinMyCarTrip.Application.Services
             return await repository.GetByIdAsync<ApplicationUser>(id);
         }
 
-        public UserRoleModel GetUserRole(string roleId)
-        {
-            return  repository.All<IdentityRole>()
-                .Where(x => x.Id == roleId)
-                .Select(r => new UserRoleModel()
-                {
-                    Id = r.Id,
-                    Name = r.Name
-                }).FirstOrDefault();
-       
-        }
 
         public async Task<IEnumerable<UserTripViewModel>> GetUsers()
         {
