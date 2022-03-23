@@ -1,9 +1,4 @@
 ﻿
-@using JoinMyCarTrip.Data.Entities
-@using Microsoft.AspNetCore.Identity
-@using JoinMyCarTrip.Application.Utils
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <!--
@@ -59,14 +54,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
 
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="@Gravtar.GetUrl((await UserManager.GetUserAsync(User)).Email)" class="img-circle elevation-2" alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="/User/Profile" class="nav-link">@((await UserManager.GetUserAsync(User)).FullName)</a>
-                        </div>
-                    </div>
+                 <partial name="_ProfileData" />
+                  
                     <!-- Sidebar Menu -->
                     <partial name="_MainMenu" />
             

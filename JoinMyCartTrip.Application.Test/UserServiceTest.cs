@@ -1,6 +1,6 @@
 ﻿namespace JoinMyCartTrip.Application.Test
 {
-    public class Class1
+    public class UserServiceTest
     {
 
     }
