@@ -11,9 +11,9 @@ namespace JoinMyCarTrip.Controllers
     public class TripController : BaseController
 
     {
-        private readonly ICarTripService tripService;
+        private readonly ITripService tripService;
 
-        public TripController(ICarTripService _tripService
+        public TripController(ITripService _tripService
             ,UserManager<ApplicationUser> userManager)
             : base(userManager)
         {

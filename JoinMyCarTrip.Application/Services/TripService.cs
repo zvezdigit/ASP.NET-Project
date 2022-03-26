@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JoinMyCarTrip.Application.Services
 {
-    public class CarTripService : ICarTripService
+    public class TripService : ITripService
     {
         private readonly IRepository repository;
 
-        public CarTripService(IRepository _repository)
+        public TripService(IRepository _repository)
         {
             this.repository = _repository;
         }

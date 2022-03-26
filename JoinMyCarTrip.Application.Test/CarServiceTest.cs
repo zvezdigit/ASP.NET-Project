@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Xunit;
 
 namespace JoinMyCarTrip.Application.Test
 {
     public class CarServiceTest
     {
+        [Fact]
+
+        public async Task WhenAddingACarANewCarIsAdded()
+        {
+            var userId = "123";
+
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace JoinMyCarTrip.Application.Test
             repository.All<Trip>().Returns(trips);
             repository.All<ApplicationUser>().Returns(users);
 
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             // act
             await service.AddUserToTrip(tripId, userId);
@@ -54,7 +54,7 @@ namespace JoinMyCarTrip.Application.Test
             var trip2 = new Trip { Id = "754675467", Seats = 2 };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             var trips = new List<Trip> { trip1, trip2 }.AsQueryable();
 
@@ -83,7 +83,7 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             var trips = new List<Trip>
             {
@@ -112,7 +112,7 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             var trips = new List<Trip>
             {
@@ -144,7 +144,7 @@ namespace JoinMyCarTrip.Application.Test
             var tripOrganizerId = "123";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
 
             var trips = new List<Trip>
@@ -175,7 +175,7 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
 
             var trips = new List<Trip>
@@ -213,7 +213,7 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
 
             var trips = new List<Trip>
@@ -282,7 +282,7 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
 
@@ -306,9 +306,9 @@ namespace JoinMyCarTrip.Application.Test
             var userId = "777";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
-            repository.All<ApplicationUser>().Returns(new[] 
+            repository.All<ApplicationUser>().Returns(new[]
             {
                  new ApplicationUser { Id = "1" },
                  new ApplicationUser { Id = "2" },
@@ -316,7 +316,7 @@ namespace JoinMyCarTrip.Application.Test
             }.AsQueryable());
 
 
-         
+
             //act
             var myTrips = service.GetMyTrips(userId);
 
@@ -344,7 +344,7 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
 
@@ -387,7 +387,7 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<Trip>().Returns(new[] { trip1, trip2 }.AsQueryable());
 
@@ -409,7 +409,7 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<Trip>().Returns(trips.AsQueryable());
 
@@ -428,7 +428,7 @@ namespace JoinMyCarTrip.Application.Test
 
             var car = new Car
             {
-                Id="123",
+                Id = "123",
                 Model = "ford",
                 IsWithAirConditioner = true,
                 LuggageAllowed = true,
@@ -447,7 +447,7 @@ namespace JoinMyCarTrip.Application.Test
             {
                 Id = tripId,
                 TripOrganizerId = tripOrganizer.Id,
-                TripOrganizer=tripOrganizer,
+                TripOrganizer = tripOrganizer,
                 StartPoint = "X",
                 EndPoint = "Y",
                 DepartureTime = new DateTime(),
@@ -461,7 +461,7 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<Trip>().Returns(new[] { trip }.AsQueryable());
 
@@ -522,7 +522,7 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<Trip>().Returns(new[] { trip }.AsQueryable());
 
@@ -535,7 +535,7 @@ namespace JoinMyCarTrip.Application.Test
 
         public void ReturnAllUsersCars()
         {
-          var  userId = "123";
+            var userId = "123";
 
             var user = new ApplicationUser
             {
@@ -557,12 +557,12 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
-           
-            
+
+
             repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
-            
+
             var cars = service.GetAllTripCars(userId);
 
             //assert
@@ -590,7 +590,7 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
 
 
@@ -608,7 +608,7 @@ namespace JoinMyCarTrip.Application.Test
             var userId = "123";
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<ApplicationUser>().Returns(new[]
             {
@@ -646,7 +646,7 @@ namespace JoinMyCarTrip.Application.Test
             var tipTypes = new List<TripType> { tripType1, tripType2 };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             repository.All<TripType>().Returns(new[] { tripType1, tripType2 }.AsQueryable());
 
@@ -667,8 +667,6 @@ namespace JoinMyCarTrip.Application.Test
             var tripTypeId = "1";
             var carId = "car1";
             var userId = "123";
-            var tripId = "123";
-
 
             var tripModel = new CreateTripFormViewModel
             {
@@ -678,42 +676,28 @@ namespace JoinMyCarTrip.Application.Test
                 DepartureTime = new DateTime(),
                 TripTypeId = tripTypeId,
                 CarId = carId,
-                
-
-            };
-
-            var trip = new Trip
-            {
-                Id = tripId,
-                StartPoint = tripModel.StartPoint,
-                EndPoint = tripModel.EndPoint,
-                Seats = tripModel.Seats,
-                DepartureTime = tripModel.DepartureTime.Value,
-                TripTypeId = tripModel.TripTypeId,
-                CarId = tripModel.CarId,
-                TripOrganizerId = userId
-            };
-
-            var userTrip = new UserTrip
-            {
-                UserId = userId,
-                Trip = trip
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new CarTripService(repository);
+            var service = new TripService(repository);
 
             await service.CreateTrip(tripModel, userId);
 
-            await repository.Received(1).AddAsync(Arg.Is<Trip>(t => t.StartPoint==trip.StartPoint && 
-                t.EndPoint ==trip.EndPoint  && t.Seats ==trip.Seats && t.DepartureTime==trip.DepartureTime 
-                && t.TripTypeId==trip.TripTypeId 
-                && t.CarId==trip.CarId && t.TripOrganizerId==trip.TripOrganizerId));
+            await repository.Received(1).AddAsync(Arg.Is<Trip>(t => Matches(tripModel, t) && t.TripOrganizerId == userId));
 
-            //await repository.Received(1).AddAsync(Arg.Is<UserTrip>(t => t.UserId == userId && t.Trip == trip));
- 
+            await repository.Received(1).AddAsync(Arg.Is<UserTrip>(t => Matches(tripModel, t.Trip) && t.UserId == userId));
+
             await repository.Received(1).SaveChangesAsync();
-            
+        }
+
+        private bool Matches(CreateTripFormViewModel tripModel, Trip trip)
+        {
+            return trip.StartPoint == tripModel.StartPoint 
+                && trip.EndPoint == tripModel.EndPoint 
+                && trip.Seats == tripModel.Seats 
+                && trip.DepartureTime == tripModel.DepartureTime
+                && trip.TripTypeId == tripModel.TripTypeId
+                && trip.CarId == tripModel.CarId;
         }
     }
 }

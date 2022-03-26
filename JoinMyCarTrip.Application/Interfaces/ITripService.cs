@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JoinMyCarTrip.Application.Interfaces
 {
-    public interface ICarTripService
+    public interface ITripService
     {
         Task CreateTrip(CreateTripFormViewModel model, string userId);
         IEnumerable<TripTypeViewModel> GetAllTripTypes();

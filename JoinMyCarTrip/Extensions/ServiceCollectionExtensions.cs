@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services
                 .AddSingleton<ISystemClock, SystemClock>()
                 .AddScoped<IRepository, Repository>()
-                .AddScoped<ICarTripService, CarTripService>()
+                .AddScoped<ITripService, TripService>()
                 .AddScoped<IUserService, UserService>()
                 .AddScoped<ICarService, CarService>()
                 .AddScoped<IMessageService, MessageService>();
