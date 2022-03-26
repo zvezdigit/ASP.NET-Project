@@ -1,10 +1,11 @@
-﻿using JoinMyCarTrip.Application.Services;
+﻿using JoinMyCarTrip.Application.Models.Trips;
+using JoinMyCarTrip.Application.Services;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
 using NSubstitute;
 using Xunit;
 
-namespace JoinMyCartTrip.Application.Test
+namespace JoinMyCarTrip.Application.Test
 {
     public class TripServiceTest
     {
@@ -525,12 +526,194 @@ namespace JoinMyCartTrip.Application.Test
 
             repository.All<Trip>().Returns(new[] { trip }.AsQueryable());
 
-
-        
-
             //act and assert
 
             Assert.Throws<ArgumentException>(() => service.GetTripDetails(trip2Id));
+        }
+
+        [Fact]
+
+        public void ReturnAllUsersCars()
+        {
+          var  userId = "123";
+
+            var user = new ApplicationUser
+            {
+                Id = userId,
+                FullName = "user1",
+                Email = "user@abv.bg"
+            };
+
+            var car1 = new Car
+            {
+                Id = "123",
+                Model = "model"
+            };
+
+            user.Cars = new List<Car>
+            {
+             car1,
+             new Car { Id ="456", Model ="model1"}
+            };
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarTripService(repository);
+
+           
+            
+            repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
+            
+            var cars = service.GetAllTripCars(userId);
+
+            //assert
+            Assert.Equal(2, cars.MyCars.Count);
+            Assert.Equal(cars.MyCars.First().Model, car1.Model);
+
+
+        }
+
+        [Fact]
+
+        public void WhenUserCarsAreNotFoundReturnZero()
+        {
+
+            var userId = "123";
+
+            var user = new ApplicationUser
+            {
+                Id = userId,
+                FullName = "user1",
+                Email = "user@abv.bg"
+            };
+
+            user.Cars = new List<Car>();
+
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarTripService(repository);
+
+
+
+            repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
+
+            var cars = service.GetAllTripCars(userId);
+
+            Assert.Equal(0, cars.MyCars.Count);
+        }
+
+        [Fact]
+        public void WhenReturningAllUserCarsAndUserNotFound()
+        {
+            //arrange
+            var userId = "123";
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarTripService(repository);
+
+            repository.All<ApplicationUser>().Returns(new[]
+            {
+                 new ApplicationUser { Id = "1" },
+                 new ApplicationUser { Id = "2" },
+                 new ApplicationUser { Id = "3" },
+            }.AsQueryable());
+
+
+
+            //act
+            var cars = service.GetAllTripCars(userId);
+
+            //assert
+            Assert.Null(cars);
+        }
+
+        [Fact]
+
+        public void ReturnAllTripTypes()
+        {
+            //arrange
+            var tripType1 = new TripType
+            {
+                Id = "123",
+                Type = "type1"
+            };
+
+            var tripType2 = new TripType
+            {
+                Id = "456",
+                Type = "type2"
+            };
+
+            var tipTypes = new List<TripType> { tripType1, tripType2 };
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarTripService(repository);
+
+            repository.All<TripType>().Returns(new[] { tripType1, tripType2 }.AsQueryable());
+
+            //act
+            var types = service.GetAllTripTypes();
+
+            //assert
+            Assert.Equal(2, types.Count());
+            Assert.Equal(types.First().Type, tripType1.Type);
+
+
+        }
+
+        [Fact]
+
+        public async Task WhenCreatingATripANewTripIsCreated()
+        {
+            var tripTypeId = "1";
+            var carId = "car1";
+            var userId = "123";
+            var tripId = "123";
+
+
+            var tripModel = new CreateTripFormViewModel
+            {
+                StartPoint = "X",
+                EndPoint = "Y",
+                Seats = 4,
+                DepartureTime = new DateTime(),
+                TripTypeId = tripTypeId,
+                CarId = carId,
+                
+
+            };
+
+            var trip = new Trip
+            {
+                Id = tripId,
+                StartPoint = tripModel.StartPoint,
+                EndPoint = tripModel.EndPoint,
+                Seats = tripModel.Seats,
+                DepartureTime = tripModel.DepartureTime.Value,
+                TripTypeId = tripModel.TripTypeId,
+                CarId = tripModel.CarId,
+                TripOrganizerId = userId
+            };
+
+            var userTrip = new UserTrip
+            {
+                UserId = userId,
+                Trip = trip
+            };
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarTripService(repository);
+
+            await service.CreateTrip(tripModel, userId);
+
+            await repository.Received(1).AddAsync(Arg.Is<Trip>(t => t.StartPoint==trip.StartPoint && 
+                t.EndPoint ==trip.EndPoint  && t.Seats ==trip.Seats && t.DepartureTime==trip.DepartureTime 
+                && t.TripTypeId==trip.TripTypeId 
+                && t.CarId==trip.CarId && t.TripOrganizerId==trip.TripOrganizerId));
+
+            //await repository.Received(1).AddAsync(Arg.Is<UserTrip>(t => t.UserId == userId && t.Trip == trip));
+ 
+            await repository.Received(1).SaveChangesAsync();
+            
         }
     }
 }

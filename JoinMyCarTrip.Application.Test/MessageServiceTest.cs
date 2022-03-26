@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinMyCartTrip.Application.Test
+namespace JoinMyCarTrip.Application.Test
 {
     public class MessageServiceTest
     {
+        [Fact]
+        public async Task WhenTextingAMessageANewMessageCreated()
+        {
+
+        }
     }
 }

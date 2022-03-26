@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip.Application",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip.Data", "JoinMyCarTrip.Data\JoinMyCarTrip.Data.csproj", "{002005D5-C7B8-4B81-BCD5-094F03918D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinMyCartTrip.Application.Test", "JoinMyCartTrip.Application.Test\JoinMyCartTrip.Application.Test.csproj", "{32962549-C140-44A2-BD13-6E88B87D3527}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinMyCarTrip.Application.Test", "JoinMyCarTrip.Application.Test\JoinMyCarTrip.Application.Test.csproj", "{D5D88317-34E9-48A4-B44F-6A78CDB51390}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{002005D5-C7B8-4B81-BCD5-094F03918D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002005D5-C7B8-4B81-BCD5-094F03918D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002005D5-C7B8-4B81-BCD5-094F03918D31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32962549-C140-44A2-BD13-6E88B87D3527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32962549-C140-44A2-BD13-6E88B87D3527}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32962549-C140-44A2-BD13-6E88B87D3527}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32962549-C140-44A2-BD13-6E88B87D3527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5D88317-34E9-48A4-B44F-6A78CDB51390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5D88317-34E9-48A4-B44F-6A78CDB51390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5D88317-34E9-48A4-B44F-6A78CDB51390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5D88317-34E9-48A4-B44F-6A78CDB51390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
