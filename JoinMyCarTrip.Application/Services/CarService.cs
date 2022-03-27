@@ -23,6 +23,16 @@ namespace JoinMyCarTrip.Application.Services
 
         public async Task AddCar(AddCarFormViewModel model, string userId)
         {
+            if(string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentException("userId cannot be null or empty", nameof(userId));
+            }
+
+            if(model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             var car = new Car
             {
                 Model = model.BrandAndModel,

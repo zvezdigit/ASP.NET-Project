@@ -699,5 +699,31 @@ namespace JoinMyCarTrip.Application.Test
                 && trip.TripTypeId == tripModel.TripTypeId
                 && trip.CarId == tripModel.CarId;
         }
+
+        [Fact]
+
+        public async Task WhenCreatingATripAndAUserIsNotFound()
+        {
+            string userId = null;
+
+            var repository = Substitute.For<IRepository>();
+            var service = new TripService(repository);
+
+            await Assert.ThrowsAsync<ArgumentException>(
+                   async () => await service.CreateTrip(new CreateTripFormViewModel(), userId));
+        }
+
+        [Fact]
+
+        public async Task WhenCreatingATripAndAModelIsNull()
+        {
+            string userId = "123";
+
+            var repository = Substitute.For<IRepository>();
+            var service = new TripService(repository);
+
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                   async () => await service.CreateTrip(null, userId));
+        }
     }
 }

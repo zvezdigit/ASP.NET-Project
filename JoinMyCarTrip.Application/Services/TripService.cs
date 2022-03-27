@@ -16,6 +16,16 @@ namespace JoinMyCarTrip.Application.Services
         }
         public async Task CreateTrip(CreateTripFormViewModel model, string userId)
         {
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentException("userId cannot be null or empty", nameof(userId));
+            }
+
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             var trip = new Trip()
             {
                 StartPoint = model.StartPoint,

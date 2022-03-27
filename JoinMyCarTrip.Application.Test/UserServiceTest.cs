@@ -128,6 +128,41 @@ namespace JoinMyCarTrip.Application.Test
         }
 
         [Fact]
+
+        public async Task WhenAddingAPetAndAUserIsNull()
+        {
+            string userId = null;
+
+            var repository = Substitute.For<IRepository>();
+            var systemClock = Substitute.For<ISystemClock>();
+
+            var service = new UserService(repository, systemClock);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () =>
+            await service.AddPet(new AddPetFormViewModel(), userId));
+
+            var exception = await Assert.ThrowsAsync<ArgumentException>(async () =>
+            await service.AddPet(new AddPetFormViewModel(), userId));
+
+            Assert.Equal("userId cannot be null or empty (Parameter 'userId')", exception.Message);
+        }
+
+        [Fact]
+
+        public async Task WhenAddingAPetAndAModelIsNull()
+        {
+            string userId = "123";
+
+            var repository = Substitute.For<IRepository>();
+            var systemClock = Substitute.For<ISystemClock>();
+
+            var service = new UserService(repository, systemClock);
+
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            await service.AddPet(null, userId));
+        }
+
+        [Fact]
         public async Task WhenGivingUserIdReturnUser()
         {
             var userId = "123";

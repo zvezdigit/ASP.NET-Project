@@ -24,7 +24,12 @@ namespace JoinMyCarTrip.Application.Services
 
             if (trip == null)
             {
-                throw new ArgumentException("Trip not found");
+                throw new ArgumentException("Trip is not found");
+            }
+
+            if (model==null)
+            {
+                throw new ArgumentNullException(nameof(model));
             }
 
             var message = new Message

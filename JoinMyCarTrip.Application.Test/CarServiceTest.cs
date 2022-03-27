@@ -51,6 +51,42 @@ namespace JoinMyCarTrip.Application.Test
         }
 
         [Fact]
+
+        public async Task WhenAddingACarAndUserIsNotFound()
+        {
+            string userId = null;
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarService(repository);
+
+            
+            //act + assert
+          await Assert.ThrowsAsync<ArgumentException>(
+                    async () => await service.AddCar(new AddCarFormViewModel(), userId));
+
+            var exception =  await Assert.ThrowsAsync<ArgumentException>(
+                    async () => await service.AddCar(new AddCarFormViewModel(), userId));
+
+            Assert.Equal("userId cannot be null or empty (Parameter 'userId')", exception.Message);
+        }
+
+
+        [Fact]
+
+        public async Task WhenAddingACarAndAModelIsNull()
+        {
+            string userId = "123";
+
+            var repository = Substitute.For<IRepository>();
+            var service = new CarService(repository);
+
+
+            //act + assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                      async () => await service.AddCar(null, userId));
+        }
+
+        [Fact]
         public void ReturnAllUserCars()
         {
             var userId = "123";
