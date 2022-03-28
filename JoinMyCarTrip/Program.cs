@@ -2,6 +2,7 @@ using Data;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.ModelBinders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
+        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
         options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider("dd.MM.yyyy"));
     });
 

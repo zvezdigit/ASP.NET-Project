@@ -26,11 +26,13 @@ namespace JoinMyCarTrip.Application.Services
                 throw new ArgumentNullException(nameof(model));
             }
 
+            
+
             var trip = new Trip()
             {
                 StartPoint = model.StartPoint,
                 EndPoint = model.EndPoint,
-                Seats = model.Seats,
+                Seats = model.Seats.Value,
                 TripTypeId = model.TripTypeId,
                 TripOrganizerId = userId,
                 DepartureTime = model.DepartureTime.Value,

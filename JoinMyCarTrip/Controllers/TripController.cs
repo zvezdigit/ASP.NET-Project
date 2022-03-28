@@ -20,6 +20,7 @@ namespace JoinMyCarTrip.Controllers
             this.tripService = _tripService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var userId = await GetUserIdAsync();

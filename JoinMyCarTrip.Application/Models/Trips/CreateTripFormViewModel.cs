@@ -17,12 +17,12 @@ namespace JoinMyCarTrip.Application.Models.Trips
         [Required]
         public DateTime? DepartureTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Trip type is required")]
         public string TripTypeId { get; set; }
 
         [Required]
         [Range(2,7)]
-        public int Seats { get; set; }
+        public int? Seats { get; set; }
 
         [Required]
         public string CarId { get; set; }

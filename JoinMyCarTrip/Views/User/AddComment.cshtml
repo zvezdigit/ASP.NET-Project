@@ -8,7 +8,8 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <form method="post" action="/User/AddComment?tripOrganizerId=@ViewBag.TripOrganizerId" role="form">
+                <form asp-action="AddComment" asp-controller="User" method="post">
+                     <input type="hidden" name="TripOrganizerId" value="@ViewBag.tripOrganizerId" />
                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                           <label asp-for="Description" class="control-label">Comment </label>

@@ -3,7 +3,8 @@
 
 <!-- Main content -->
 <section class="content">
-    <form method="post" action="/Trip/Create">
+    @*<form method="post" action="/Trip/Create">*@
+      <form asp-action="Create" asp-controller="Trip" method="post">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -33,24 +34,25 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="DepartureTime" class="control-label">Departure Time </label>
-                            <input asp-for="DepartureTime" min="@DateTime.Now" class="form-control" placeholder="dd/MM/yyyy HH:mm    />
+                            <input asp-for="DepartureTime" min="@DateTime.Now" class="form-control" placeholder="dd/MM/yyyy HH:mm"/>
                             <span asp-validation-for="DepartureTime" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="CarId">Car</label>
                             <select asp-for="CarId" asp-items="@(new SelectList(ViewBag.Cars, nameof(TripCarViewModel.CarId), nameof(TripCarViewModel.Model)))" class="form-control custom-select">
-                                <option>Please select one</option>
+                                <option selected="" disabled="">Select one</option>
                             </select>
                             <span asp-validation-for="CarId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="seats">Seats</label>
                             <input min="2" max="7" type="number" name="Seats" class="form-control">
+                             <span asp-validation-for="Seats" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="TripTypeId">Trip Type</label>
                              <select asp-for="TripTypeId" asp-items="@(new SelectList(ViewBag.TripTypes, nameof(TripTypeViewModel.Id), nameof(TripTypeViewModel.Type)))" class="form-control custom-select">
-                                <option>Please select one</option>
+                                <option selected="" disabled="">Select one</option>
                             </select>
                             <span asp-validation-for="TripTypeId" class="text-danger"></span>
                         </div>

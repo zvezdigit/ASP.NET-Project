@@ -16,7 +16,9 @@ namespace JoinMyCarTrip.Controllers
         {
             messageService = _messageService;
         }
-        public IActionResult TextMessage([FromQuery]string tripId)
+        
+        [HttpGet]
+        public IActionResult TextMessage(string tripId)
         {
             ViewBag.TripId = tripId;
 
@@ -24,7 +26,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> TextMessage(TextMessageFormViewModel form, [FromQuery]string tripId)
+        public async Task<IActionResult> TextMessage(TextMessageFormViewModel form, string tripId)
         {
             if (!ModelState.IsValid)
             {

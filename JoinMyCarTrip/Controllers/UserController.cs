@@ -35,6 +35,7 @@ namespace JoinMyCarTrip.Controllers
             return View(profile);
         }
 
+        [HttpGet]
         public IActionResult AddPet()
         {
             return View();
@@ -55,7 +56,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddComment([FromQuery]string tripOrganizerId)
+        public IActionResult AddComment(string tripOrganizerId)
         {
             ViewBag.TripOrganizerId = tripOrganizerId;
             return View();
@@ -63,7 +64,7 @@ namespace JoinMyCarTrip.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddComment(AddCommentFormViewModel form 
-            ,[FromQuery] string tripOrganizerId)
+            ,string tripOrganizerId)
         {
             if (!ModelState.IsValid)
             {
