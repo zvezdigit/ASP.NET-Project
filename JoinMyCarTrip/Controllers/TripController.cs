@@ -66,7 +66,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details([FromQuery]string tripId)
+        public IActionResult Details(string tripId)
         {
             TripDetailsViewModel tripDetailsViewModel = tripService.GetTripDetails(tripId);
 
@@ -81,7 +81,7 @@ namespace JoinMyCarTrip.Controllers
             return View(trips);
         }
 
-        public async Task<IActionResult> JoinTrip([FromQuery]string tripId)
+        public async Task<IActionResult> JoinTrip(string tripId)
         {
             try
             {
