@@ -9,6 +9,8 @@ namespace JoinMyCarTrip.Application.Services
 {
     public class TripService : ITripService
     {
+        private const string TripTypesCacheKey = "tripTypes";
+
         private readonly IRepository repository;
         private readonly IMemoryCache memoryCache;
 
@@ -29,25 +31,12 @@ namespace JoinMyCarTrip.Application.Services
                 throw new ArgumentNullException(nameof(model));
             }
 
-            string cacheEntry;
-
-            if (!memoryCache.TryGetValue("tripType", out cacheEntry))
-            {
-                cacheEntry = model.TripTypeId;
-
-                var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromDays(1));
-
-                memoryCache.Set("tripType", cacheEntry, cacheEntryOptions);
-            }
-            
-
             var trip = new Trip()
             {
                 StartPoint = model.StartPoint,
                 EndPoint = model.EndPoint,
                 Seats = model.Seats.Value,
-                TripTypeId = cacheEntry,
+                TripTypeId = model.TripTypeId,
                 TripOrganizerId = userId,
                 DepartureTime = model.DepartureTime.Value,
                 CarId = model.CarId
@@ -67,7 +56,19 @@ namespace JoinMyCarTrip.Application.Services
 
         public IEnumerable<TripTypeViewModel> GetAllTripTypes()
         {
-            return repository.All<TripType>().Select(x => new TripTypeViewModel
+            var tripTypes = new List<TripType>();
+
+            if(!memoryCache.TryGetValue(TripTypesCacheKey, out tripTypes))
+            {
+                tripTypes = repository.All<TripType>().ToList();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(30));
+
+                memoryCache.Set(TripTypesCacheKey, tripTypes, cacheOptions);
+            }
+
+            return tripTypes.Select(x => new TripTypeViewModel
             {
                 Id = x.Id,
                 Type = x.Type

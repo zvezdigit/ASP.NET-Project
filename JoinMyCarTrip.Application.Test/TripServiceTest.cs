@@ -647,7 +647,7 @@ namespace JoinMyCarTrip.Application.Test
 
         [Fact]
 
-        public void ReturnAllTripTypes()
+        public void ReturnAllTripTypesCacheHit()
         {
             //arrange
             var tripType1 = new TripType
@@ -662,13 +662,17 @@ namespace JoinMyCarTrip.Application.Test
                 Type = "type2"
             };
 
-            var tipTypes = new List<TripType> { tripType1, tripType2 };
+            var tripTypes = new List<TripType> { tripType1, tripType2 };
 
             var repository = Substitute.For<IRepository>();
             var memoryCache = Substitute.For<IMemoryCache>();
             var service = new TripService(repository, memoryCache);
 
-            repository.All<TripType>().Returns(new[] { tripType1, tripType2 }.AsQueryable());
+            memoryCache.TryGetValue(Arg.Any<string>(), out Arg.Any<IList<TripType>>())
+                .Returns(x => {
+                    x[1] = tripTypes;
+                    return true;
+                });
 
             //act
             var types = service.GetAllTripTypes();
@@ -677,7 +681,43 @@ namespace JoinMyCarTrip.Application.Test
             Assert.Equal(2, types.Count());
             Assert.Equal(types.First().Type, tripType1.Type);
 
+            repository.DidNotReceive().All<TripType>();
+        }
 
+        [Fact]
+        public void ReturnAllTripTypesCacheMiss()
+        {
+            //arrange
+            var tripType1 = new TripType
+            {
+                Id = "123",
+                Type = "type1"
+            };
+
+            var tripType2 = new TripType
+            {
+                Id = "456",
+                Type = "type2"
+            };
+
+            var tripTypes = new List<TripType> { tripType1, tripType2 };
+
+            var repository = Substitute.For<IRepository>();
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
+
+
+            memoryCache.TryGetValue(Arg.Any<string>(), out Arg.Any<IList<TripType>>())
+                .Returns(false);
+
+            repository.All<TripType>().Returns(tripTypes.AsQueryable());
+
+            //act
+            var types = service.GetAllTripTypes();
+
+            //assert
+            Assert.Equal(2, types.Count());
+            Assert.Equal(types.First().Type, tripType1.Type);
         }
 
         [Fact]
