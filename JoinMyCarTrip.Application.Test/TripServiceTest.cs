@@ -2,6 +2,7 @@
 using JoinMyCarTrip.Application.Services;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
+using Microsoft.Extensions.Caching.Memory;
 using NSubstitute;
 using Xunit;
 
@@ -17,6 +18,7 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
+            var memoryCache = Substitute.For<IMemoryCache>();
 
             var trips = new List<Trip>
             {
@@ -33,7 +35,7 @@ namespace JoinMyCarTrip.Application.Test
             repository.All<Trip>().Returns(trips);
             repository.All<ApplicationUser>().Returns(users);
 
-            var service = new TripService(repository);
+            var service = new TripService(repository, memoryCache);
 
             // act
             await service.AddUserToTrip(tripId, userId);
@@ -54,7 +56,8 @@ namespace JoinMyCarTrip.Application.Test
             var trip2 = new Trip { Id = "754675467", Seats = 2 };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             var trips = new List<Trip> { trip1, trip2 }.AsQueryable();
 
@@ -83,7 +86,8 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             var trips = new List<Trip>
             {
@@ -112,7 +116,8 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             var trips = new List<Trip>
             {
@@ -144,7 +149,8 @@ namespace JoinMyCarTrip.Application.Test
             var tripOrganizerId = "123";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
 
             var trips = new List<Trip>
@@ -175,7 +181,8 @@ namespace JoinMyCarTrip.Application.Test
             var tripId = "456";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
 
             var trips = new List<Trip>
@@ -213,7 +220,8 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
 
             var trips = new List<Trip>
@@ -281,8 +289,9 @@ namespace JoinMyCarTrip.Application.Test
                 new UserTrip { User = user, UserId = userId, Trip = trip2 },
             };
 
-            var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var repository = Substitute.For<IRepository>(); 
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
 
@@ -306,7 +315,9 @@ namespace JoinMyCarTrip.Application.Test
             var userId = "777";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
+
 
             repository.All<ApplicationUser>().Returns(new[]
             {
@@ -344,7 +355,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<ApplicationUser>().Returns(new[] { user }.AsQueryable());
 
@@ -387,7 +399,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<Trip>().Returns(new[] { trip1, trip2 }.AsQueryable());
 
@@ -409,7 +422,8 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<Trip>().Returns(trips.AsQueryable());
 
@@ -461,7 +475,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<Trip>().Returns(new[] { trip }.AsQueryable());
 
@@ -522,7 +537,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<Trip>().Returns(new[] { trip }.AsQueryable());
 
@@ -557,7 +573,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
 
 
@@ -590,7 +607,8 @@ namespace JoinMyCarTrip.Application.Test
 
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
 
 
@@ -608,7 +626,8 @@ namespace JoinMyCarTrip.Application.Test
             var userId = "123";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<ApplicationUser>().Returns(new[]
             {
@@ -646,7 +665,8 @@ namespace JoinMyCarTrip.Application.Test
             var tipTypes = new List<TripType> { tripType1, tripType2 };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             repository.All<TripType>().Returns(new[] { tripType1, tripType2 }.AsQueryable());
 
@@ -679,7 +699,8 @@ namespace JoinMyCarTrip.Application.Test
             };
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             await service.CreateTrip(tripModel, userId);
 
@@ -706,8 +727,9 @@ namespace JoinMyCarTrip.Application.Test
         {
             string userId = null;
 
-            var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var repository = Substitute.For<IRepository>(); 
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             await Assert.ThrowsAsync<ArgumentException>(
                    async () => await service.CreateTrip(new CreateTripFormViewModel(), userId));
@@ -720,7 +742,8 @@ namespace JoinMyCarTrip.Application.Test
             string userId = "123";
 
             var repository = Substitute.For<IRepository>();
-            var service = new TripService(repository);
+            var memoryCache = Substitute.For<IMemoryCache>();
+            var service = new TripService(repository, memoryCache);
 
             await Assert.ThrowsAsync<ArgumentNullException>(
                    async () => await service.CreateTrip(null, userId));

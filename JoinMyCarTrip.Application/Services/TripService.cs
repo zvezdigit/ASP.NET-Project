@@ -3,16 +3,19 @@ using JoinMyCarTrip.Application.Models.Trips;
 using JoinMyCarTrip.Data.Common;
 using JoinMyCarTrip.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JoinMyCarTrip.Application.Services
 {
     public class TripService : ITripService
     {
         private readonly IRepository repository;
+        private readonly IMemoryCache memoryCache;
 
-        public TripService(IRepository _repository)
+        public TripService(IRepository _repository, IMemoryCache _memoryCache)
         {
-            this.repository = _repository;
+           repository = _repository;
+           memoryCache = _memoryCache;
         }
         public async Task CreateTrip(CreateTripFormViewModel model, string userId)
         {
@@ -26,6 +29,17 @@ namespace JoinMyCarTrip.Application.Services
                 throw new ArgumentNullException(nameof(model));
             }
 
+            string cacheEntry;
+
+            if (!memoryCache.TryGetValue("tripType", out cacheEntry))
+            {
+                cacheEntry = model.TripTypeId;
+
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromDays(1));
+
+                memoryCache.Set("tripType", cacheEntry, cacheEntryOptions);
+            }
             
 
             var trip = new Trip()
@@ -33,7 +47,7 @@ namespace JoinMyCarTrip.Application.Services
                 StartPoint = model.StartPoint,
                 EndPoint = model.EndPoint,
                 Seats = model.Seats.Value,
-                TripTypeId = model.TripTypeId,
+                TripTypeId = cacheEntry,
                 TripOrganizerId = userId,
                 DepartureTime = model.DepartureTime.Value,
                 CarId = model.CarId
