@@ -21,6 +21,9 @@ builder.Services
     .AddEntityFrameworkStores<JoinMyCarTripDbContext>();
 
 
+builder.Services.AddSession(options =>
+options.Cookie.HttpOnly = true);
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
