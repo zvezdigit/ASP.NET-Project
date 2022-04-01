@@ -29,7 +29,7 @@ namespace JoinMyCarTrip.Controllers
             {
                 return View(form);
             }
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             await carService.AddCar(form, userId);
 
             return Redirect("/Car/All");
@@ -38,7 +38,7 @@ namespace JoinMyCarTrip.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             var allCars = carService.GetAllCars(userId);
 
             return View(allCars);

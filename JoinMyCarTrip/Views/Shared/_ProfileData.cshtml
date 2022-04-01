@@ -1,16 +1,13 @@
-﻿@using JoinMyCarTrip.Data.Entities
-@using Microsoft.AspNetCore.Identity
-@using JoinMyCarTrip.Application.Utils
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+﻿@using JoinMyCarTrip.Application.Utils
 
-
-
-<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="image">
-        <img src="@Gravtar.GetUrl((await UserManager.GetUserAsync(User)).Email)" class="img-circle elevation-2" alt="User Image">
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="@Gravtar.GetUrl(ViewBag.UserProfile.Email)" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="/User/Profile" class="nav-link">@(ViewBag.UserProfile.FullName)</a>
+        </div>
     </div>
-    <div class="info">
-        <a href="/User/Profile" class="nav-link">@((await UserManager.GetUserAsync(User)).FullName)</a>
-    </div>
-</div>
+}

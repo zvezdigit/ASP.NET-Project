@@ -29,13 +29,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-               
             </ul>
             <partial name="_LoginPartial" />
-
-              <!-- Right navbar links -->
-           
-          
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
@@ -47,22 +42,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">Find a Trip</span>
             </a>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
 
-                 <partial name="_ProfileData" />
-                  
-                    <!-- Sidebar Menu -->
-                    <partial name="_MainMenu" />
-            
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-            
+                <partial name="_ProfileData" />
 
+                <!-- Sidebar Menu -->
+                <partial name="_MainMenu" />
+            </div>
+        </aside>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -71,13 +60,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">@ViewData["Title"]</h1>
-                        </div><!-- /.col -->
-                      @*  <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Starter Page</li>
-                            </ol>
-                        </div><!-- /.col -->*@
+                        </div>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -103,19 +86,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/plugins/toastr/toastr.min.js"></script>
     <script src="~/js/adminlte.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
     <partial name="_UserMessages" />
     @await RenderSectionAsync("Scripts", false)
-        <script type="text/javascript">
-       $(function() {
-           $('a.nav-link[href="' + window.location.pathname + '"]').addClass('active');
-           $('[data-toggle="tooltip"]').tooltip();
-       });
+
+    <script type="text/javascript">
+        $(function() {
+            $('a.nav-link[href="' + window.location.pathname + '"]').addClass('active');
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 </body>
 </html>

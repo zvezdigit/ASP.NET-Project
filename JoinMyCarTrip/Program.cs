@@ -27,7 +27,7 @@ options.Cookie.HttpOnly = true);
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
-        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
         options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider("dd.MM.yyyy"));
     });
 
@@ -51,6 +51,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

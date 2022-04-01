@@ -33,7 +33,7 @@ namespace JoinMyCarTrip.Controllers
                 return View(form);
             }
 
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             await messageService.TextMessage(form, tripId, userId);
 
             return Redirect($"/Trip/Details?tripId={tripId}");

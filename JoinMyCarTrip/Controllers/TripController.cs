@@ -23,7 +23,7 @@ namespace JoinMyCarTrip.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             var cars = tripService.GetAllTripCars(userId).MyCars.ToList();
 
             if (cars.Count == 0)
@@ -42,7 +42,7 @@ namespace JoinMyCarTrip.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTripFormViewModel model)
         {
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
 
             if (!ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace JoinMyCarTrip.Controllers
 
         public async Task<IActionResult> MyTrips()
         {
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             var trips = tripService.GetMyTrips(userId);
 
             return View(trips);
@@ -85,7 +85,7 @@ namespace JoinMyCarTrip.Controllers
         {
             try
             {
-                var userId = await GetUserIdAsync();
+                var userId = ApplicationUser.Id;
                 await tripService.AddUserToTrip(tripId, userId);
             }
             catch (Exception e)

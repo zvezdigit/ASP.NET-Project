@@ -181,6 +181,7 @@ namespace JoinMyCarTrip.Application.Services
                .FirstOrDefault(u => u.Id == userId);
 
             var trip = repository.All<Trip>()
+                .Include(x => x.UserTrips)
                 .FirstOrDefault(t => t.Id == tripId);
 
             if (user == null || trip == null)

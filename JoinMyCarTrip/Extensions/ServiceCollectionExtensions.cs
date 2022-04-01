@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services
                 .AddSingleton<ISystemClock, SystemClock>()
-                
+
                 .AddScoped<IRepository, Repository>()
                 .AddScoped<ITripService, TripService>()
                 .AddScoped<IUserService, UserService>()

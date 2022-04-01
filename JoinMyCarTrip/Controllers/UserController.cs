@@ -29,7 +29,7 @@ namespace JoinMyCarTrip.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             var profile = userService.Profile(userId);
 
             return View(profile);
@@ -49,7 +49,7 @@ namespace JoinMyCarTrip.Controllers
                 return View(form);
             }
 
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             await userService.AddPet(form, userId);
 
             return Redirect("/User/Profile");
@@ -72,7 +72,7 @@ namespace JoinMyCarTrip.Controllers
                 return View(form);
             }
 
-            var userId = await GetUserIdAsync();
+            var userId = ApplicationUser.Id;
             await userService.AddComment(form, tripOrganizerId, userId);
 
             return Redirect($"/User/Profile/{tripOrganizerId}");

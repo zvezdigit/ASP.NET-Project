@@ -2,6 +2,7 @@
 using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,17 +10,16 @@ using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Controllers
 {
-    public class HomeController : Controller
+    [AllowAnonymous]
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> logger;
         private SignInManager<ApplicationUser> signInManager;
         private UserManager<ApplicationUser> userManager;
-
-
         public HomeController(
             ILogger<HomeController> _logger, 
             SignInManager<ApplicationUser> _signInManager, 
-            UserManager<ApplicationUser> _userManager) 
+            UserManager<ApplicationUser> _userManager) : base(_userManager)
         {
             logger = _logger;
             signInManager = _signInManager;
