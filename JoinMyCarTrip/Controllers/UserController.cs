@@ -1,7 +1,6 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Application.Models.Users;
 using JoinMyCarTrip.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +26,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Profile()
+        public IActionResult Profile()
         {
             var userId = ApplicationUser.Id;
             var profile = userService.Profile(userId);
@@ -77,7 +76,5 @@ namespace JoinMyCarTrip.Controllers
 
             return Redirect($"/User/Profile/{tripOrganizerId}");
         }
-
-
     }
 }

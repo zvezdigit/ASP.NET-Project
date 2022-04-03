@@ -1,6 +1,4 @@
 ﻿using JoinMyCarTrip.Application.Interfaces;
-using JoinMyCarTrip.Application.Models;
-using JoinMyCarTrip.Application.Models.Cars;
 using JoinMyCarTrip.Application.Models.Trips;
 using JoinMyCarTrip.Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -21,7 +19,7 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             var userId = ApplicationUser.Id;
             var cars = tripService.GetAllTripCars(userId).MyCars.ToList();
@@ -73,7 +71,7 @@ namespace JoinMyCarTrip.Controllers
             return View(tripDetailsViewModel);
         }
 
-        public async Task<IActionResult> MyTrips()
+        public IActionResult MyTrips()
         {
             var userId = ApplicationUser.Id;
             var trips = tripService.GetMyTrips(userId);

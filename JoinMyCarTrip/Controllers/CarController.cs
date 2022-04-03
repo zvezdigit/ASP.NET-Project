@@ -36,10 +36,10 @@ namespace JoinMyCarTrip.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public IActionResult All()
         {
             var userId = ApplicationUser.Id;
-            var allCars = carService.GetAllCars(userId);
+            var allCars =  carService.GetAllCars(userId);
 
             return View(allCars);
         }

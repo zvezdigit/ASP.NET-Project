@@ -17,7 +17,6 @@ namespace JoinMyCarTrip.Controllers
             userManager = _userManager;
         }
 
-
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             if (User?.Identity?.IsAuthenticated == true)

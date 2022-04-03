@@ -1,8 +1,7 @@
 ﻿@model JoinMyCarTrip.Application.Models.Users.AddPetFormViewModel
 
-<!-- Main content -->
-<section class="content">
-      
+
+<section class="content">  
     <form asp-action="AddPet" asp-controller="User"method="post">
         <div class="row">
             <div class="col-md-3"></div>
@@ -35,12 +34,8 @@
                         <input asp-for="@Model.Description" textarea rows="3" class="form-control" />
                         <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
             <div class="col-md-3"></div>
         </div>

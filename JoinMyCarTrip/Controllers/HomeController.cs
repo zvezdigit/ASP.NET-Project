@@ -1,5 +1,4 @@
 ﻿using JoinMyCarTrip.Application.Constants;
-using JoinMyCarTrip.Application.Interfaces;
 using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.Models;
 using Microsoft.AspNetCore.Authorization;
