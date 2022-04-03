@@ -133,10 +133,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <partial name="_UserMessages" />
     @await RenderSectionAsync("Scripts", false)
+    
     <script type="text/javascript">
         $(function() {
             $('a.nav-link[href="' + window.location.pathname + '"]').addClass('active');
         });
     </script>
+
 </body>
 </html>

@@ -5,13 +5,10 @@
     var items = (List<SelectListItem>)ViewBag.RoleItems;
 }
 
-<!-- Horizontal Form -->
 <div class="card card-info">
     <div class="card-header">
         <h3 class="card-title">Change User Role</h3>
     </div>
-    <!-- /.card-header -->
-    <!-- form start -->
     <form class="form-horizontal" method="post">
         <input type="hidden" name="UserId" value="@Model.UserId" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -38,11 +35,9 @@
             </div>
 
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
             <button type="submit" id="roles" class="btn btn-outline-info">Update Role</button>
         </div>
-        <!-- /.card-footer -->
     </form>
 </div>
-<!-- /.card -->
+

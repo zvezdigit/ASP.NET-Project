@@ -32,15 +32,6 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
             return View(users);
         }
 
-        //public async Task<IActionResult> CreateRole()
-        //{
-        //    await roleManager.CreateAsync(new IdentityRole()
-        //    {
-        //        Name = "Admin"
-        //    });
-
-        //    return Ok();
-        //}
 
         public async Task<IActionResult> Roles(string id)
         {
@@ -93,7 +84,5 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
             return Redirect("/Admin/Admin/Users");
 
         }
-
-
     }
 }
