@@ -26,7 +26,10 @@ namespace JoinMyCarTrip.Application.Models.Trips
 
         public string CarModel { get; set; }
 
-        public string CarImageUrl { get; set; } = DataConstants.MissingCarUrl;
+        public string CarImageUrl { get; set; }
+
+        public string CarImage => string.IsNullOrEmpty(CarImageUrl) ? DataConstants.MissingCarUrl : CarImageUrl;
+
 
         public bool AirConditioner { get; set; }
 

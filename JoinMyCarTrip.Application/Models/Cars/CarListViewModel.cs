@@ -13,6 +13,8 @@ namespace JoinMyCarTrip.Application.Models.Cars
 
         public int Year { get; set; }
 
-        public string ImageUrl { get; set; } = DataConstants.MissingCarUrl;
+        public string ImageUrl { get; set; }
+
+        public string CarImage => string.IsNullOrEmpty(ImageUrl) ? DataConstants.MissingCarUrl : ImageUrl;
     }
 }
