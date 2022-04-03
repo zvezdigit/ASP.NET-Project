@@ -3,10 +3,12 @@ using JoinMyCarTrip.Data.Entities;
 using JoinMyCarTrip.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var config = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
     .AddUserSecrets<Program>()
     .Build();
 
@@ -44,6 +46,13 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseRequestLocalization(options => 
+{
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-GB");
+    options.SupportedCultures = new[] { new CultureInfo("en-GB") };
+    options.SupportedUICultures = new[] { new CultureInfo("en-GB") };
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -174,7 +174,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     IsWithAirConditioner = table.Column<bool>(type: "bit", nullable: false),
                     LuggageAllowed = table.Column<bool>(type: "bit", nullable: false),
                     Smoking = table.Column<bool>(type: "bit", nullable: false),
@@ -200,7 +200,8 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     IsNiceOrganizer = table.Column<bool>(type: "bit", nullable: false),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TripOrganizerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    TripOrganizerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -327,6 +328,20 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "687cd1fa-ba03-4f05-b341-3a0bb817b16e", "1", "Administrator", "ADMINISTRATOR" },
+                    { "c8c2b9c6-17b9-4cc3-b3d6-d2006471dc82", "1", "SuperAdmin", "SUPERADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "670b3e98-faec-4026-994a-cd3a4a231bf4", 0, "6f22d933-5e97-4f3d-915f-064f1b83611d", "pesho@abv.com", false, "Super Pesho", false, null, null, "PESHO@ABV.BG", "AQAAAAEAACcQAAAAEKSVbyMRRKapKw7uTWWqVsNkuegEau2em6hA5EWnPzoTn6uFGWWhktxPAr08m6k3xw==", null, false, "81cd2a05-b6ed-4471-8525-47c7dd405662", false, "pesho@abv.bg" });
+
+            migrationBuilder.InsertData(
                 table: "TripTypes",
                 columns: new[] { "Id", "Type" },
                 values: new object[,]
@@ -336,6 +351,11 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     { "e651e301-ab94-4a1c-8b57-bbb9b63904e2", "One-time" },
                     { "ffe4071c-da82-411a-bedc-0d6124ceff85", "Monthly" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "c8c2b9c6-17b9-4cc3-b3d6-d2006471dc82", "670b3e98-faec-4026-994a-cd3a4a231bf4" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

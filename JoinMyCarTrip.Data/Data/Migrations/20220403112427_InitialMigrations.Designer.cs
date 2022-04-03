@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JoinMyCarTrip.Data.Data.Migrations
 {
     [DbContext(typeof(JoinMyCarTripDbContext))]
-    [Migration("20220312143742_SeedAdmin")]
-    partial class SeedAdmin
+    [Migration("20220403112427_InitialMigrations")]
+    partial class InitialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,7 +98,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         {
                             Id = "670b3e98-faec-4026-994a-cd3a4a231bf4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "afc79b1f-d045-4614-a887-1017778918ca",
+                            ConcurrencyStamp = "6f22d933-5e97-4f3d-915f-064f1b83611d",
                             Email = "pesho@abv.com",
                             EmailConfirmed = false,
                             FullName = "Super Pesho",
@@ -106,7 +106,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                             NormalizedUserName = "PESHO@ABV.BG",
                             PasswordHash = "AQAAAAEAACcQAAAAEKSVbyMRRKapKw7uTWWqVsNkuegEau2em6hA5EWnPzoTn6uFGWWhktxPAr08m6k3xw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "243be7ec-b751-45c4-a2a2-4eb03b42e690",
+                            SecurityStamp = "81cd2a05-b6ed-4471-8525-47c7dd405662",
                             TwoFactorEnabled = false,
                             UserName = "pesho@abv.bg"
                         });
@@ -119,7 +119,6 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         .HasColumnType("nvarchar(36)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -163,6 +162,9 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     b.Property<string>("AuthorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -374,6 +376,13 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                             ConcurrencyStamp = "1",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = "687cd1fa-ba03-4f05-b341-3a0bb817b16e",
+                            ConcurrencyStamp = "1",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 
@@ -546,7 +555,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
             modelBuilder.Entity("JoinMyCarTrip.Data.Entities.Pet", b =>
                 {
                     b.HasOne("JoinMyCarTrip.Data.Entities.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Pets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -658,6 +667,8 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Messages");
+
+                    b.Navigation("Pets");
 
                     b.Navigation("UserTrips");
                 });

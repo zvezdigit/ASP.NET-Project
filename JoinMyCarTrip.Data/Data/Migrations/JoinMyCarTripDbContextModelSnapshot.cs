@@ -96,7 +96,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                         {
                             Id = "670b3e98-faec-4026-994a-cd3a4a231bf4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "18753ecc-eb37-4319-82c8-6f5200bb5982",
+                            ConcurrencyStamp = "6f22d933-5e97-4f3d-915f-064f1b83611d",
                             Email = "pesho@abv.com",
                             EmailConfirmed = false,
                             FullName = "Super Pesho",
@@ -104,7 +104,7 @@ namespace JoinMyCarTrip.Data.Data.Migrations
                             NormalizedUserName = "PESHO@ABV.BG",
                             PasswordHash = "AQAAAAEAACcQAAAAEKSVbyMRRKapKw7uTWWqVsNkuegEau2em6hA5EWnPzoTn6uFGWWhktxPAr08m6k3xw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9688c2db-dfba-44f2-9a68-1142e6e97c3f",
+                            SecurityStamp = "81cd2a05-b6ed-4471-8525-47c7dd405662",
                             TwoFactorEnabled = false,
                             UserName = "pesho@abv.bg"
                         });
