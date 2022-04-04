@@ -48,6 +48,6 @@ namespace JoinMyCarTrip.Data
 
         public const string AdminAllRoles = "SuperAdmin,Administrator";
 
-        public const string MissingCarUrl = "/img/25-258960_open-creative-commons-images-car-hd.png";
+        public const string MissingCarUrl = "/img/default_car_image.jpg";
     }
 }
