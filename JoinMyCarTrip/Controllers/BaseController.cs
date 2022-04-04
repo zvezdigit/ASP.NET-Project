@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRole)]
     public class BaseController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

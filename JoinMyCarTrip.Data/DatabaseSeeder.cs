@@ -52,13 +52,23 @@ namespace JoinMyCarTrip.Data
         private static void SeedRole(this ModelBuilder modelBuilder)
         {
             var roleId = "687cd1fa-ba03-4f05-b341-3a0bb817b16e";
+            var roleIdUser = "73a944f1-a19a-4a81-b9c9-f540b5a3eff8";
 
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
-            {
-                Name = AdminRole,
-                NormalizedName = AdminRole.ToUpper(),
-                Id = roleId,
-                ConcurrencyStamp = "1"
+            modelBuilder.Entity<IdentityRole>().HasData(new[] {
+                new IdentityRole
+                {
+                    Name = AdminRole,
+                    NormalizedName = AdminRole.ToUpper(),
+                    Id = roleId,
+                    ConcurrencyStamp = "1"
+                },
+                new IdentityRole
+                {
+                    Name = UserRole,
+                    NormalizedName = UserRole.ToUpper(),
+                    Id = roleIdUser,
+                    ConcurrencyStamp = "1"
+                }
             });
         }
 
