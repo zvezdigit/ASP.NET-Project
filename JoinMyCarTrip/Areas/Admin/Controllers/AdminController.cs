@@ -4,6 +4,7 @@ using JoinMyCarTrip.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Areas.Admin.Controllers
 {
@@ -45,15 +46,16 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
                 FullName = user.FullName
             };
 
-
-            ViewBag.RoleItems = roleManager.Roles
+            ViewBag.RoleItems = roleManager
+                .Roles
+                .Where(x => x.Name != SuperAdminRole)
                 .ToList()
-                .Select(r => new SelectListItem()
-                {
-                    Text = r.Name,
-                    Value = r.Name,
-                    Selected = userManager.IsInRoleAsync(user, r.Name).Result
-                }).ToList();
+                 .Select(r => new SelectListItem()
+                 {
+                     Text = r.Name,
+                     Value = r.Name,
+                     Selected = userManager.IsInRoleAsync(user, r.Name).Result
+                 }).ToList();
 
             return View(model);
         }
