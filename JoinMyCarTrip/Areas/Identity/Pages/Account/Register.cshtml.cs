@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Areas.Identity.Pages.Account
 {
@@ -141,7 +142,7 @@ namespace JoinMyCarTrip.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var defaultrole = await _roleManager.FindByNameAsync("User");
+                    var defaultrole = await _roleManager.FindByNameAsync(UserRole);
 
                     if (defaultrole != null)
                     {

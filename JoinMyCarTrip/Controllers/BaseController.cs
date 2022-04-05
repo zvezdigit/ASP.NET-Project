@@ -7,7 +7,7 @@ using static JoinMyCarTrip.Data.DataConstants;
 
 namespace JoinMyCarTrip.Controllers
 {
-    [Authorize(Roles = UserRole)]
+    [Authorize(Roles = UserAllRoles)]
     public class BaseController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
