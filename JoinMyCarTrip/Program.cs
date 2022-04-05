@@ -26,6 +26,15 @@ builder.Services
 builder.Services.AddSession(options =>
 options.Cookie.HttpOnly = true);
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential 
+    // cookies is needed for a given request.
+    options.CheckConsentNeeded = context => true;
+    // requires using Microsoft.AspNetCore.Http;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
@@ -33,14 +42,7 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider("dd.MM.yyyy"));
     });
 
-//builder.Services.Configure<CookiePolicyOptions>(options =>
-//{
-//    // This lambda determines whether user consent for non-essential 
-//    // cookies is needed for a given request.
-//    options.CheckConsentNeeded = context => true;
-//    // requires using Microsoft.AspNetCore.Http;
-//    options.MinimumSameSitePolicy = SameSiteMode.None;
-//});
+
 
 var app = builder.Build();
 
@@ -66,7 +68,7 @@ app.UseRequestLocalization(options =>
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-//app.UseCookiePolicy();
+app.UseCookiePolicy();
 
 app.UseRouting();
 
