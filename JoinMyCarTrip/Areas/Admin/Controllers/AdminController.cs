@@ -48,7 +48,6 @@ namespace JoinMyCarTrip.Areas.Admin.Controllers
 
             ViewBag.RoleItems = roleManager
                 .Roles
-                .Where(x => x.Name != SuperAdminRole)
                 .ToList()
                  .Select(r => new SelectListItem()
                  {
