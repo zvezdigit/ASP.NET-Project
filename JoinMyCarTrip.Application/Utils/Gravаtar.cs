@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoinMyCarTrip.Application.Utils
 {
-    public static class Gravtar
+    public static class Gravаtar
     {
         private const string GravatarApiBaseUrl = "https://www.gravatar.com/avatar/";
         public static string GetUrl(string email)

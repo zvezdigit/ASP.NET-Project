@@ -141,7 +141,7 @@ namespace JoinMyCarTrip.Application.Services
                      DepartureTime = trip.DepartureTime,
                      Passengers = trip.UserTrips.Select(u => new UserTripViewModel
                      {
-                         GravatarLink = Utils.Gravtar.GetUrl(u.User.Email),
+                         GravatarLink = Utils.Gravаtar.GetUrl(u.User.Email),
                          UserId = u.UserId,
                          FullName = u.User.FullName
 
@@ -166,7 +166,7 @@ namespace JoinMyCarTrip.Application.Services
                        DepartureTime = trip.Trip.DepartureTime,
                        Passengers = trip.Trip.UserTrips.Select(u => new UserTripViewModel
                        {
-                           GravatarLink = Utils.Gravtar.GetUrl(u.User.Email),
+                           GravatarLink = Utils.Gravаtar.GetUrl(u.User.Email),
                            UserId = u.UserId,
                            FullName = u.User.FullName
                        }).ToList()

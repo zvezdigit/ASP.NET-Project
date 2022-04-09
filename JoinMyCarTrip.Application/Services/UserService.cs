@@ -81,7 +81,7 @@ namespace JoinMyCarTrip.Application.Services
                     UserId = u.Id,
                     FullName=u.FullName,
                     Email = u.Email,
-                    GravatarLink= Utils.Gravtar.GetUrl(u.Email),
+                    GravatarLink= Utils.Gravаtar.GetUrl(u.Email),
                 })
                 .ToListAsync();
         }
@@ -98,7 +98,7 @@ namespace JoinMyCarTrip.Application.Services
                 .Select(user => new ProfileUserViewModel
                 {
                     UserId = userId,
-                    GravatarLink = Utils.Gravtar.GetUrl(user.Email),
+                    GravatarLink = Utils.Gravаtar.GetUrl(user.Email),
                     FullName = user.FullName,
                     Email = user.Email,
                     Phone = user.PhoneNumber,
