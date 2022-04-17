@@ -58,7 +58,7 @@ else
     app.UseHsts();
 }
 
-app.UseRequestLocalization(options => 
+app.UseRequestLocalization(options =>
 {
     options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-GB");
     options.SupportedCultures = new[] { new CultureInfo("en-GB") };

@@ -35,7 +35,7 @@ namespace JoinMyCarTrip.Application.Services
             var message = new Message
             {
                 TripId = trip.Id,
-                Date = systemClock.UtcNow.DateTime,
+                Date = systemClock.UtcNow.DateTime.ToLocalTime(),
                 Text = model.Text,
                 AuthorId = userId,
             };
